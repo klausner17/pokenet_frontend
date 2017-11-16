@@ -4,15 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MaterializeModule } from 'angular2-materialize';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    MaterializeModule
+    MaterializeModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
