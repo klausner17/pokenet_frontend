@@ -8,11 +8,11 @@ import { MaterializeModule } from 'angular2-materialize';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    MaterializeModule
+    LoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MaterializeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
