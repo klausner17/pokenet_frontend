@@ -10,12 +10,15 @@ import { HomeComponent } from './home/home.component';
 import { RaidComponent } from './raid/raid.component';
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { ProfileComponent } from './profile/profile/profile.component';
+import { ProfileService } from './profile/profile.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RaidComponent
+    RaidComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,11 @@ import { AuthGuardService } from './guards/auth-guard.service';
     LoginModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    ProfileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

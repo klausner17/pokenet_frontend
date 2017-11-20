@@ -11,7 +11,7 @@ export class AuthService {
 
   isAuthenticate(): boolean {
     let userToken = localStorage.getItem('userToken');
-    if (userToken === undefined)
+    if (userToken === null)
       return false;
     else return true;
   }
