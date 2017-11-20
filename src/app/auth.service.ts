@@ -3,16 +3,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
 
-  private token: string;
-
   constructor() { }
 
   authenticate(token: string) {
-    this.token = token;
+    localStorage.setItem('userToken', token)
   }
 
   isAuthenticate(): boolean {
-    if (this.token === undefined)
+    let userToken = localStorage.getItem('userToken');
+    if (userToken === undefined)
       return false;
     else return true;
   }

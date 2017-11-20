@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private _loginService: LoginService,
     private router: Router, authService: AuthService) {
-      if(!authService.isAuthenticate())
+      if(authService.isAuthenticate())
         router.navigate(['/home'])
     }
 
