@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +10,18 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _loginService: LoginService) { }
+  constructor(private _loginService: LoginService,
+    private router: Router, authService: AuthService) {
+      if(!authService.isAuthenticate())
+        router.navigate(['/home'])
+    }
 
   ngOnInit() {
   }
 
+
+
   login() {
-    console.log('fazendo login');
     this._loginService.login();
   }
 

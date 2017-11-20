@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  pokemons = ['Charizard', 'Blstoise', 'Raichu'];
+  tokenUser: string;
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
