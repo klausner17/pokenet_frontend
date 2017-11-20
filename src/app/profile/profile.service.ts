@@ -1,10 +1,10 @@
+import { Trainner } from './../models/Trainner';
 import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Profile } from '../models/Profile';
 import { RequestOptions } from '@angular/http';
-import { Trainner } from '../models/Trainner';
 
 @Injectable()
 export class ProfileService {
@@ -40,6 +40,16 @@ export class ProfileService {
         trainners = result;
         console.log(result);
         return trainners;
+      });
+  }
+
+  addTrainner(trainer: Trainner) : Observable<Trainner> {
+    let options: RequestOptions = new RequestOptions({headers: this.headers});
+    return this.http.post(`${environment.backend}/trainner`, trainer, options)
+      .map((response: Response) => response.json())
+      .map((result) => {
+        let trainner = result;
+        return trainner;
       });
   }
 

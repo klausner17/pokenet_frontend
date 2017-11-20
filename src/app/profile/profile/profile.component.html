@@ -1,3 +1,10 @@
-<p>
-  profile works!
-</p>
+<div class="container">
+  <h4 class="align center blue-text">Treinador: {{profile.name}}</h4>
+  <div *ngIf="profile.trainners === undefined || profile.trainners.length == 0">
+    <span>Você ainda não cadastrou nenhum treinador</span>
+  </div>
+  <ul class="collection">
+    <li class="collection-item" *ngFor="let trainner of profile.trainners">1 - Fiat Lux</li>
+  </ul>
+  <button class="btn align right" (click)="adicionar()">Adicionar</button>
+</div>
