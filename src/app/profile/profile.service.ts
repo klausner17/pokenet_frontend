@@ -13,17 +13,16 @@ export class ProfileService {
 
   constructor(private http: Http) {
     this.headers = new Headers();
-    let userToken = localStorage.getItem('userToken')
+    const userToken = localStorage.getItem('userToken');
     this.headers.append('Authorization', `Bearer ${userToken}`);
   }
 
   getProfile(): Observable<Profile> {
-    let profile: Profile;
-    let options: RequestOptions = new RequestOptions({headers: this.headers});
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.get(`${environment.backend}/user`, options)
       .map((response: Response) => response.json())
       .map((result) => {
-        let profile = new Profile();
+        const profile = new Profile();
         profile.name = result.name;
         console.log(result);
         return profile;
@@ -31,8 +30,7 @@ export class ProfileService {
   }
 
   getTrainners(): Observable<Trainner[]> {
-    let profile: Trainner[];
-    let options: RequestOptions = new RequestOptions({headers: this.headers});
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.get(`${environment.backend}/trainner`, options)
       .map((response: Response) => response.json())
       .map((result) => {
@@ -43,14 +41,19 @@ export class ProfileService {
       });
   }
 
-  addTrainner(trainer: Trainner) : Observable<Trainner> {
-    let options: RequestOptions = new RequestOptions({headers: this.headers});
+  addTrainner(trainer: Trainner): Observable<Trainner> {
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.post(`${environment.backend}/trainner`, trainer, options)
       .map((response: Response) => response.json())
       .map((result) => {
-        let trainner = result;
+        const trainner = result;
         return trainner;
       });
+  }
+
+  deleteTrainner(id: number): Observable<Response> {
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
+    return this.http.delete(`${environment.backend}/trainner/${id}`, options);
   }
 
 }

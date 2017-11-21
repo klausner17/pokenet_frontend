@@ -1,4 +1,5 @@
-import { MaterializeAction } from "angular2-materialize";
+import { Response } from '@angular/http';
+import { MaterializeAction } from 'angular2-materialize';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Profile } from '../../models/Profile';
 import { ProfileService } from '../profile.service';
@@ -13,38 +14,66 @@ export class ProfileComponent implements OnInit {
 
   profile: Profile;
   trainnerEdit: Trainner;
+  modalActions: EventEmitter<string|MaterializeAction>;
+  modalConfirm: EventEmitter<string|MaterializeAction>;
+  idToDelete: number;
 
   constructor(private profileService: ProfileService) {
+    this.modalActions = new EventEmitter<string|MaterializeAction>();
+    this.modalConfirm = new EventEmitter<string|MaterializeAction>();
     this.profile = new Profile();
     this.profile.trainners = new Array<Trainner>();
     this.trainnerEdit = new Trainner();
-    this.trainnerEdit.name = "";
   }
 
   ngOnInit() {
     this.profileService.getProfile()
       .subscribe((result: Profile) => {
         this.profile = result;
-      } );
+      });
     this.profileService.getTrainners()
       .subscribe((result: Trainner[]) => {
         this.profile.trainners = result;
-      })
+      });
   }
 
   adicionar() {
-    console.log(this.trainnerEdit);
     this.profileService.addTrainner(this.trainnerEdit)
-      .subscribe(result => this.profile.trainners.push(result));
+      .subscribe(result => {
+        this.trainnerEdit = new Trainner();
+        this.profile.trainners.push(result);
+      });
   }
 
-  modalActions = new EventEmitter<string|MaterializeAction>();
+  deletar(id: number) {
+    this.idToDelete = id;
+  }
+
+  remove() {
+    this.profileService.deleteTrainner(this.idToDelete)
+      .subscribe((res: Response) => {
+        this.profile.trainners.forEach((element: Trainner, index: number) => {
+          if (element.id === this.idToDelete) {
+            this.idToDelete = -1;
+            this.profile.trainners.splice(index);
+          }
+        });
+      });
+  }
 
   openModal() {
-    this.modalActions.emit({action:"modal",params:['open']});
+    this.modalActions.emit({action: 'modal', params: ['open']});
   }
   closeModal() {
-    this.modalActions.emit({action:"modal",params:['close']});
+    this.modalActions.emit({action: 'modal', params: ['close']});
+  }
+
+  openConfirm(id: number) {
+    this.idToDelete = id;
+    this.modalConfirm.emit({action: 'modal', params: ['open']});
+  }
+  closeConfirm() {
+    this.modalConfirm.emit({action: 'modal', params: ['close']});
   }
 
 }
