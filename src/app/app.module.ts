@@ -14,6 +14,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { ProfileService } from './profile/profile.service';
 import { NewRaidComponent } from './raid/new-raid/new-raid.component';
+import { RaidService } from './raid/raid.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NewRaidComponent } from './raid/new-raid/new-raid.component';
     HomeComponent,
     RaidComponent,
     ProfileComponent,
+    NewRaidComponent,
     NewRaidComponent
   ],
   imports: [
@@ -33,7 +35,8 @@ import { NewRaidComponent } from './raid/new-raid/new-raid.component';
   providers: [
     AuthService,
     AuthGuardService,
-    ProfileService
+    ProfileService,
+    RaidService
   ],
   bootstrap: [AppComponent]
 })

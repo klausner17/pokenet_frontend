@@ -1,4 +1,6 @@
+import { RaidService } from '../raid.service';
 import { Component, OnInit } from '@angular/core';
+import { Raid } from '../../models/Raid';
 
 @Component({
   selector: 'app-new-raid',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewRaidComponent implements OnInit {
 
-  constructor() { }
+  raid: Raid;
+  selectOptions = [1,2,3];
+
+  constructor(private raidService: RaidService) {
+    this.raid = new Raid();
+   }
 
   ngOnInit() {
   }
