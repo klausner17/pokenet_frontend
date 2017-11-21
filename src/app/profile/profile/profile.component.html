@@ -1,10 +1,3 @@
-
-<script>
-    $(document).ready(function() {
-      $('.modal').modal();
-    })
-  </script>
-
 <div class="container">
   <h5 class="align center green-text">{{ profile.name }}</h5>
   <div *ngIf="profile.trainners === undefined || profile.trainners.length == 0">
@@ -17,22 +10,20 @@
     </li>
   </ul>
 
-<!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger align right" (click)="openModal()">Modal</a>
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger align right" (click)="openModal()">novo</a>
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
- <div class="modal-content">
-   <input placeholder="nome" type="text" [(value)]="trainnerEdit.name"> {{trainnerEdit.name}}
-   <input placeholder="nível" type="number" [value]="trainnerEdit.level">
- </div>
- <div class="modal-footer">
-   <a class="waves-effect waves-green btn-flat" (click)="closeModal()">fechar</a>
-   <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="adicionar()" >salvar</a>
- </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+    <div class="modal-content">
+      <form #f="ngForm">
+        <input placeholder="nome" type="text" id="name" name="name" [(ngModel)]="trainnerEdit.name" #name="ngModel" required>
+        <input placeholder="nível" type="number" id="level" name="level" [(ngModel)]="trainnerEdit.level" #name="ngModel" required>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a class="waves-effect waves-green btn-flat" (click)="closeModal()">fechar</a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="adicionar()">salvar</a>
+    </div>
+  </div>
 </div>
-</div>
-
-
-
-
