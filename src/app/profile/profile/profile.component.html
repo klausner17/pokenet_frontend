@@ -1,10 +1,38 @@
+
+<script>
+    $(document).ready(function() {
+      $('.modal').modal();
+    })
+  </script>
+
 <div class="container">
-  <h4 class="align center blue-text">Treinador: {{profile.name}}</h4>
+  <h5 class="align center green-text">{{ profile.name }}</h5>
   <div *ngIf="profile.trainners === undefined || profile.trainners.length == 0">
     <span>Você ainda não cadastrou nenhum treinador</span>
   </div>
   <ul class="collection">
-    <li class="collection-item" *ngFor="let trainner of profile.trainners">1 - Fiat Lux</li>
+    <li class="collection-item" *ngFor="let trainner of profile.trainners">
+      <span>{{ trainner.name }}</span>
+      <span class="badge">nível {{ trainner.level }}</span>
+    </li>
   </ul>
-  <button class="btn align right" (click)="adicionar()">Adicionar</button>
+
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger align right" (click)="openModal()">Modal</a>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+ <div class="modal-content">
+   <input placeholder="nome" type="text" [(value)]="trainnerEdit.name"> {{trainnerEdit.name}}
+   <input placeholder="nível" type="number" [value]="trainnerEdit.level">
+ </div>
+ <div class="modal-footer">
+   <a class="waves-effect waves-green btn-flat" (click)="closeModal()">fechar</a>
+   <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="adicionar()" >salvar</a>
+ </div>
 </div>
+</div>
+
+
+
+

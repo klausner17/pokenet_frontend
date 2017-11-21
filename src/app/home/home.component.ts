@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +11,13 @@ export class HomeComponent implements OnInit {
   pokemons = ['Charizard', 'Blstoise', 'Raichu'];
   tokenUser: string;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 
