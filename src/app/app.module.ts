@@ -13,13 +13,15 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { ProfileService } from './profile/profile.service';
+import { NewRaidComponent } from './raid/new-raid/new-raid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RaidComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewRaidComponent
   ],
   imports: [
     BrowserModule,
