@@ -1,34 +1,36 @@
 <div class="container">
-  <form #f="ngForm">
-    <h4 class="align center">NOVA RAID</h4>
-    <div class="row">
-      <div class="col m4 s12 l4 input-field">
-        <select materialize="material_select" [materializeSelectOptions]="pokemons" [required]="true"
-        [(ngModel)]="raid.pokemonId" name="ngModel">
-          <option disabled>Pokemon</option>
-          <option *ngFor="let pokemon of pokemons" [value]="pokemon.id">{{pokemon.name | titlecase}}</option>
-        </select>
-      </div>
+  <h4 class="align center">NOVA RAID</h4>
+  <div class="row">
+    <div class="col s12 l8 m8 push-l2 push-m2">
+      <form #f="ngForm">
+        <div class="row">
+          <div class="col m6 s12 l6">
+            <select materialize="material_select" [materializeSelectOptions]="pokemons" [required]="true"
+            [(ngModel)]="raid.pokemonId" name="ngModel" class="input-field">
+              <option disabled>Pokemon</option>
+              <option *ngFor="let pokemon of pokemons" [value]="pokemon.id">{{pokemon.name | titlecase}}</option>
+            </select>
+          </div>
+          <div class="col s12 m6 l6">
+            <select materialize="material_select" [materializeSelectOptions]="gyms"
+            [(ngModel)]="raid.gymId" name="ngModel" class="input-field">
+              <option disabled>Ginásio</option>
+              <option *ngFor="let gym of gyms" [value]="gym.id">{{gym.alias}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col m6 s6 l6">
+            <input type="text" materialize="pickadate" name="meetingDate" placeholder="data de encontro"
+            [(ngModel)]="raid.dateToMeet" [materializeParams]="[{format: 'dd/mm/yyyy'}]" name="ngModel">
+          </div>
+          <div class="col s6">
+              <input type="text" materialize="pickatime" name="meetingTime" placeholder="horário de encontro"
+              [(ngModel)]="raid.timeToMeet" name="ngModel">
+          </div>
+        </div>
+        <button class="btn align right" (click)="createRaid()">criar</button>
+      </form>
     </div>
-    <div class="row">
-      <div class="col m4 s12 l4">
-        <select materialize="material_select" [materializeSelectOptions]="gyms"
-        [(ngModel)]="raid.gymId" name="ngModel">
-          <option disabled>Ginásio</option>
-          <option *ngFor="let gym of gyms" [value]="gym.id">{{gym.alias}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col m6 s6 l6">
-        <input type="text" materialize="pickadate" name="meetingDate" placeholder="data de encontro"
-        [(ngModel)]="raid.dateToMeet" [materializeParams]="[{format: 'dd/mm/yyyy'}]" name="ngModel">
-      </div>
-      <div class="col s6">
-          <input type="text" materialize="pickatime" name="meetingTime" placeholder="horário de encontro"
-          [(ngModel)]="raid.timeToMeet" name="ngModel">
-      </div>
-    </div>
-    <button class="btn align right" (click)="createRaid()">criar</button>
-  </form>
+  </div>
 </div>
