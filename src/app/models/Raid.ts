@@ -1,9 +1,11 @@
 
 export class Raid {
-  pokemon: number;
-  local: number;
+  pokemonId: number;
+  pokemonGymId: number;
+  gymId: number;
   dateToMeet: Date;
   timeToMeet: Date;
-  dateToClose: Date;
+  meetingTime: Date;
   timeToClose: Date;
+  maxTrainners: number;
 }

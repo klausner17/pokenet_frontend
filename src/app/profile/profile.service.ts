@@ -36,7 +36,6 @@ export class ProfileService {
       .map((result) => {
         let trainners = new Array<Trainner>();
         trainners = result;
-        console.log(result);
         return trainners;
       });
   }
