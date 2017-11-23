@@ -12,7 +12,7 @@ import { ProfileComponent } from './profile/profile/profile.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'raid', component: RaidComponent, canActivate: [AuthGuardService] },
+  { path: 'raid/:id', component: RaidComponent, canActivate: [AuthGuardService] },
   { path: 'newraid', component: NewRaidComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'processToken', component: ProcessTokenComponent },

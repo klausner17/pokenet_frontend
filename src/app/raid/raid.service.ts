@@ -59,6 +59,16 @@ export class RaidService {
       });
   }
 
+  getRaidById(id: number): Observable<Raid> {
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
+    return this.http.get(`${environment.backend}/listRaids/${id}`, options)
+      .map((response: Response) => response.json())
+      .map((result) => {
+        const raid = result;
+        return raid;
+      });
+  }
+
 
 
 }

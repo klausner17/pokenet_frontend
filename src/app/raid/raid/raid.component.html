@@ -1,21 +1,27 @@
 <div class="container">
-  <h4 class="align center">Raid</h4>
+  <h4 class="align center">{{ raid.gym.name }}</h4>
   <div class="row">
-    <div class="col m4 s12 l4 align center">
-      <span>Pokemon: Charizard </span>
-    </div>
-    <div class="col m4 s12 l4 align center">
-      <span>Horário: 17:30</span>
-    </div>
-    <div class="col m4 s12 l4 align center">
-      <span>Criador: Tekenet</span>
+    <div class="col s12 m8 offset-m2">
+      <div class="row">
+        <div class="col s12 m4 align center">
+          <span class="bold">Pokemon: </span>
+          <span>{{ raid.pokemonGym.pokemon.name | titlecase }}</span>
+          <span class="orange-text">CP {{ raid.pokemonGym.combatPower  }}</span>
+        </div>
+        <div class="col s12 m4 align center">
+          <span class="bold">Horário: </span>
+          <span>{{ raid.meetingTime | date: 'dd/MM/yyyy HH:mm' }} </span>
+        </div>
+        <div class="col s12 m4 align center">
+          <span class="bold">Criador:</span>
+          <span>Tekenet</span>
+        </div>
+      </div>
+      <span class="align center" *ngIf="raid.raidTrainners.length == 0">Ainda não há treinadores</span>
+      <ul class="collection">
+        <li class="collection-item" *ngFor="let raidTrainner of raid.raidTrainners" > {{raidTrainner.trainner.name}} </li>
+      </ul>
+      <button class="btn align right">Juntar-se</button>
     </div>
   </div>
-  <ul class="collection">
-    <li class="collection-item">1 - Fiat Lux</li>
-    <li class="collection-item">2 - Kakavegeta</li>
-    <li class="collection-item">3 - Sou eu</li>
-    <li class="collection-item">4 - Alvin</li>
-  </ul>
-  <button class="btn align right">Juntar-se</button>
 </div>
