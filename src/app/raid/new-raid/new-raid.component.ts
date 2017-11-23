@@ -16,9 +16,12 @@ export class NewRaidComponent implements OnInit {
   pokemonsGym: PokemonGym[];
   pokemons: Pokemon[];
   gyms: Gym[];
+  datePickerParams: [{}];
+  timePickerParams: [{}];
 
   constructor(private raidService: RaidService) {
     this.raid = new Raid();
+    this.inicializarParams();
    }
 
   ngOnInit() {
@@ -37,18 +40,64 @@ export class NewRaidComponent implements OnInit {
   }
 
   createRaid() {
-    console.log(this.raid);
-    this.raid.meetingTime = new Date();
-    this.raid.meetingTime.setTime(Date.parse(this.raid.timeToMeet.toString()));
-    this.raid.meetingTime.setDate(Date.parse(this.raid.dateToMeet.toString()));
+    this.raid.meetingTime = this.stringToDate(this.raid.dateToMeet, this.raid.timeToMeet);
     this.raid.maxTrainners = 20;
     this.raid.timeToClose = this.raid.meetingTime;
-    this.pokemonsGym.forEach(element => {
-      if (element.pokemonId === this.raid.pokemonId) {
-        this.raid.pokemonGymId = element.id;
+    for (let i = 0; i < this.pokemonsGym.length; i++) {
+      if (this.pokemonsGym[i].pokemonId == this.raid.pokemonId) {
+        this.raid.pokemonGymId = this.pokemonsGym[i].id;
       }
-    });
+    }
     this.raidService.createRaid(this.raid)
       .subscribe(result => console.log(result));
+  }
+
+  stringToDate(dateStr?: string, timeStr?: string): Date {
+    let fullDate: Date = new Date();
+    let datePieces: number[];
+    if (dateStr) {
+      let pieces: string[] = dateStr.split('/');
+      fullDate = new Date(Number.parseInt(pieces[2]),
+        Number.parseInt(pieces[1]) - 1,
+        Number.parseInt(pieces[0]));
+    }
+    if (timeStr) {
+      let pieces: string[] = timeStr.split(':');
+      fullDate.setHours(Number.parseInt(pieces[0]));
+      fullDate.setMinutes(Number.parseInt(pieces[1]));
+    }
+    console.log(fullDate);
+    return fullDate;
+  }
+
+  inicializarParams() {
+    this.datePickerParams = [{
+      labelMonthNext: 'Próximo mês',
+      labelMonthPrev: 'Mês passado',
+      labelMonthSelect: 'Selecione um mês',
+      yearSelect: false,
+      monthsFull: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ],
+      monthsShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+      weekdaysFull: [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado' ],
+      weekdaysShort: [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab' ],
+      weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+      today: 'Hoje',
+      clear: 'Limpar',
+      close: 'Fechar',
+      closeOnSelect: true,
+      format: 'dd/mm/yyyy',
+      min: Date.now(),
+    }];
+
+    this.timePickerParams = [{
+      twelvehour: false,
+      autoClose: true,
+      disable: [
+        {from: [5,0], to: [21,0]}
+      ],
+      ok: 'Hoje',
+      clear: 'Limpar',
+      close: 'Cancelar',
+    }]
   }
 }
