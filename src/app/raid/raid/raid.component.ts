@@ -1,24 +1,23 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, EventEmitter } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 
-import { ProfileService } from './../../profile/profile.service';
-import { PokemonGym } from './../../models/PokemonGym';
-import { Raid } from './../../models/Raid';
-import { RaidService } from '../raid.service';
-import { Pokemon } from '../../models/Pokemon';
-import { Trainner } from '../../models/Trainner';
-import { MaterializeAction } from 'angular2-materialize';
-import { RaidTrainner } from '../../models/RaidTrainner';
+import { ProfileService } from "./../../profile/profile.service";
+import { PokemonGym } from "./../../models/PokemonGym";
+import { Raid } from "./../../models/Raid";
+import { RaidService } from "../raid.service";
+import { Pokemon } from "../../models/Pokemon";
+import { Trainner } from "../../models/Trainner";
+import { MaterializeAction } from "angular2-materialize";
+import { RaidTrainner } from "../../models/RaidTrainner";
 
 @Component({
-  selector: 'app-raid',
-  templateUrl: './raid.component.html',
-  styleUrls: ['./raid.component.css']
+  selector: "app-raid",
+  templateUrl: "./raid.component.html",
+  styleUrls: ["./raid.component.css"]
 })
 export class RaidComponent implements OnInit {
-
   raid: Raid;
-  modalActions: EventEmitter<string|MaterializeAction>;
+  modalActions: EventEmitter<string | MaterializeAction>;
   myTrainners: Trainner[];
 
   constructor(
@@ -26,33 +25,52 @@ export class RaidComponent implements OnInit {
     private raidService: RaidService,
     private profileService: ProfileService
   ) {
-    this.modalActions = new EventEmitter<string|MaterializeAction>();
+    this.modalActions = new EventEmitter<string | MaterializeAction>();
   }
 
   ngOnInit() {
-    this.profileService.getTrainners()
-      .subscribe(result => {
-        this.myTrainners = result;
-      });
-    this.activedRoute.data.subscribe((info) => {
+    this.activedRoute.data.subscribe(info => {
       this.raid = info.raid;
+    });
+    this.activedRoute.data.subscribe(info => {
+      this.myTrainners = info.myTrainners;
     });
   }
 
   join(trainner: Trainner) {
-    this.raidService.joinToRaid(this.raid.id, trainner.id)
+    this.raidService
+      .joinToRaid(this.raid.id, trainner.id)
       .subscribe((result: RaidTrainner) => {
         let raidTrainner = new RaidTrainner();
         raidTrainner.trainner = trainner;
         this.raid.raidTrainners.push(raidTrainner);
       });
-    this.modalActions.emit({action: 'modal', params: ['close']});
+    this.modalActions.emit({ action: "modal", params: ["close"] });
+  }
+
+  allowUnjoin(trainner: Trainner): boolean {
+    for (let i = 0; i < this.myTrainners.length; i++) {
+      if (trainner.userId == this.myTrainners[i].userId) return true;
+    }
+    return false;
+  }
+
+  unjoin(trainner: Trainner) {
+    this.raidService
+      .unjoinToRaid(this.raid.id, trainner.id)
+      .subscribe(result => {
+        this.raid.raidTrainners.forEach( (element: RaidTrainner, index: number) => {
+            if (element.trainner.id === trainner.id) {
+              this.raid.raidTrainners.splice(index);
+            }
+          });
+      });
   }
 
   openModal() {
-    this.modalActions.emit({action: 'modal', params: ['open']});
+    this.modalActions.emit({ action: "modal", params: ["open"] });
   }
   cancel() {
-    this.modalActions.emit({action: 'modal', params: ['close']});
+    this.modalActions.emit({ action: "modal", params: ["close"] });
   }
 }

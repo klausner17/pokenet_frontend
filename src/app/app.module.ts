@@ -1,3 +1,4 @@
+import { TrainnersResolverGuard } from './raid/guards/trainners.resolver.guard';
 import { HomeResolver } from './raid/guards/home-resolver';
 import { RaidResolver } from './raid/guards/raid-resolver';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,6 @@ import { RaidService } from './raid/raid.service';
     HomeComponent,
     RaidComponent,
     ProfileComponent,
-    NewRaidComponent,
     NewRaidComponent
   ],
   imports: [
@@ -40,7 +40,8 @@ import { RaidService } from './raid/raid.service';
     ProfileService,
     RaidService,
     RaidResolver,
-    HomeResolver
+    HomeResolver,
+    TrainnersResolverGuard
   ],
   bootstrap: [AppComponent]
 })

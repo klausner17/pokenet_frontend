@@ -1,3 +1,4 @@
+import { TrainnersResolverGuard } from './raid/guards/trainners.resolver.guard';
 import { NewRaidComponent } from './raid/new-raid/new-raid.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService],
       resolve: {raids: HomeResolver} },
   { path: 'raid/:id', component: RaidComponent, canActivate: [AuthGuardService],
-      resolve: { raid: RaidResolver} },
+      resolve: { raid: RaidResolver, myTrainners: TrainnersResolverGuard} },
   { path: 'newraid', component: NewRaidComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'processToken', component: ProcessTokenComponent },

@@ -29,7 +29,7 @@
             <div class="col s4 m4 align center">
               <span class="grey-text">nível {{ raidTrainner.trainner.level }}</span>
             </div>
-            <div class="col s3 m4 align center">
+            <div *ngIf="allowUnjoin(raidTrainner.trainner)" (click)="unjoin(raidTrainner.trainner)" class="col s3 m4 align center">
               <span class="red-text cursor-hand">sair</span>
             </div>
           </div>
