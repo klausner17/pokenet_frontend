@@ -14,17 +14,18 @@ import { Trainner } from '../../models/Trainner';
   styleUrls: ['./raid.component.css']
 })
 export class RaidComponent implements OnInit {
-
   raid: Raid;
 
-  constructor(private activedRoute: ActivatedRoute, private raidService: RaidService) {
-    this.raid = new Raid();
-  }
+  constructor(
+    private activedRoute: ActivatedRoute,
+    private raidService: RaidService
+  ) { }
 
   ngOnInit() {
-    let id: number = this.activedRoute.snapshot.params.id;
-    this.raidService.getRaidById(id)
-      .subscribe(result =>{ this.raid = result; console.log(result)});
+    this.activedRoute.data.subscribe((info) => {
+      this.raid = new Raid();
+      this.raid = info.raid;
+      console.log(this.raid);
+    });
   }
-
 }

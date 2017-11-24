@@ -1,3 +1,4 @@
+import { RaidResolver } from './raid/guards/raid-resolver';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -36,7 +37,8 @@ import { RaidService } from './raid/raid.service';
     AuthService,
     AuthGuardService,
     ProfileService,
-    RaidService
+    RaidService,
+    RaidResolver
   ],
   bootstrap: [AppComponent]
 })

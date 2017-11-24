@@ -8,11 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ProcessTokenComponent } from './login/process-token/process-token.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { RaidResolver } from './raid/guards/raid-resolver';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'raid/:id', component: RaidComponent, canActivate: [AuthGuardService] },
+  { path: 'raid/:id', component: RaidComponent, canActivate: [AuthGuardService],
+      resolve: { raid: RaidResolver} },
   { path: 'newraid', component: NewRaidComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'processToken', component: ProcessTokenComponent },
