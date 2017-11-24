@@ -40,7 +40,8 @@ export class RaidComponent implements OnInit {
     });
   }
 
-  join() {
+  join(idTrainner: number) {
+    this.raidService.joinToRaid(this.raid.id, idTrainner);
     this.modalActions.emit({action: 'modal', params: ['close']});
   }
 

@@ -21,7 +21,13 @@
       <span>Ainda não há treinadores</span>
       </div>
       <ul class="collection">
-        <li class="collection-item" *ngFor="let raidTrainner of raid.raidTrainners"> {{raidTrainner.trainner.name}} </li>
+        <li class="collection-item" *ngFor="let raidTrainner of raid.raidTrainners">
+            <div class="col s4">
+              <span>{{raidTrainner.trainner.name}}</span>
+            </div>
+            <div class="col s4 align center">
+              <span class="orange-text">nível {{raidTrainner.trainner.level}}</span>
+            </div>
       </ul>
       <button class="btn align right" (click)="openModal()">Juntar-se</button>
     </div>
@@ -34,7 +40,7 @@
     <h5 class="align center">Escolha um treinador</h5>
     <ul class="collection">
       <li (click)="join(trainner.id)" class="collection-item cursor-hand" *ngFor="let trainner of myTrainners">
-        <div class="align center">
+        <div class="col s4 align center">
           <span >{{ trainner.name }}</span>
         </div>
       </li>
