@@ -69,6 +69,13 @@ export class RaidService {
       });
   }
 
-
+  joinToRaid(idRaid: number) {
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
+    return this.http.put(`${environment.backend}/listRaids/${idRaid}/trainner`, options)
+      .map((response: Response) => response.json())
+      .map((result) => {
+        console.log(result);
+      });
+  }
 
 }

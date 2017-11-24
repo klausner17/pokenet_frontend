@@ -4,6 +4,7 @@ import { Pokemon } from './Pokemon';
 import { Gym } from './Gym';
 
 export class Raid {
+  id: number;
   pokemonId: number;
   pokemonGymId: number;
   gymId: number;
