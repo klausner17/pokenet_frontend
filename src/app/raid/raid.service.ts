@@ -7,6 +7,7 @@ import { PokemonGym } from '../models/PokemonGym';
 import { Pokemon } from '../models/Pokemon';
 import { Gym } from '../models/Gym';
 import { Raid } from '../models/Raid';
+import { RaidTrainner } from '../models/RaidTrainner';
 
 @Injectable()
 export class RaidService {
@@ -16,7 +17,6 @@ export class RaidService {
   constructor(private http: Http) {
     this.headers = new Headers();
     const userToken = localStorage.getItem('userToken');
-    console.log(userToken);
     this.headers.append('Authorization', `Bearer ${userToken}`);
    }
 
@@ -70,20 +70,24 @@ export class RaidService {
       });
   }
 
-  joinToRaid(idRaid: number, idTrainner: number) {
-    console.log(this.headers);
+  getRaids(): Observable<Raid[]> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
-    return this.http.put(`${environment.backend}/listRaids/${idRaid}/trainner/${idTrainner}`, {},  options)
+    return this.http.get(`${environment.backend}/listRaids/`, options)
+      .map((response: Response) => response.json())
+  }
+
+  joinToRaid(idRaid: number, idTrainner: number): Observable<RaidTrainner> {
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
+    return this.http.post(`${environment.backend}/listRaid/${idRaid}/trainner/${idTrainner}`, {},  options)
       .map((response: Response) => response.json())
       .map((result) => {
-        console.log(result);
+        return result;
       });
   }
 
   unjoinToRaid(idRaid: number, idTrainner: number) {
-    console.log(this.headers);
     const options: RequestOptions = new RequestOptions({headers: this.headers});
-    return this.http.delete(`${environment.backend}/listRaids/${idRaid}/trainner/${idTrainner}`, options)
+    return this.http.delete(`${environment.backend}/listRaid/${idRaid}/trainner/${idTrainner}`, options)
       .map((response: Response) => response.json())
       .map((result) => {
         console.log(result);

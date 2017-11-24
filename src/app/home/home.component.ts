@@ -1,5 +1,8 @@
+import { Raid } from './../models/Raid';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { RaidService } from '../raid/raid.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  pokemons = ['Charizard', 'Blstoise', 'Raichu'];
-  tokenUser: string;
+  raids: Raid[];
 
-  constructor(private authService: AuthService) { }
+  constructor(private activedRouter: ActivatedRoute, private authService: AuthService, private raidService: RaidService) { }
 
   ngOnInit() {
+    this.activedRouter.data.subscribe((info) => {
+      console.log(info.raids)
+      this.raids = info.raids;
+    })
   }
 
   logout() {

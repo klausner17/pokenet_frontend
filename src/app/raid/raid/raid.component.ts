@@ -1,4 +1,3 @@
-import { RaidTrainner } from './../../models/RaidTrainner';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,6 +8,7 @@ import { RaidService } from '../raid.service';
 import { Pokemon } from '../../models/Pokemon';
 import { Trainner } from '../../models/Trainner';
 import { MaterializeAction } from 'angular2-materialize';
+import { RaidTrainner } from '../../models/RaidTrainner';
 
 @Component({
   selector: 'app-raid',
@@ -33,15 +33,19 @@ export class RaidComponent implements OnInit {
     this.profileService.getTrainners()
       .subscribe(result => {
         this.myTrainners = result;
-        console.log(result);
       });
     this.activedRoute.data.subscribe((info) => {
       this.raid = info.raid;
     });
   }
 
-  join(idTrainner: number) {
-    this.raidService.joinToRaid(this.raid.id, idTrainner);
+  join(trainner: Trainner) {
+    this.raidService.joinToRaid(this.raid.id, trainner.id)
+      .subscribe((result: RaidTrainner) => {
+        let raidTrainner = new RaidTrainner();
+        raidTrainner.trainner = trainner;
+        this.raid.raidTrainners.push(raidTrainner);
+      });
     this.modalActions.emit({action: 'modal', params: ['close']});
   }
 
