@@ -21,9 +21,9 @@
         </div>
         <div class="row">
           <div class="col s6">
-            <input type="text" materialize="pickadate" name="meetingDate" placeholder="data de encontro"
-            [(ngModel)]="raid.dateToMeet" name="ngModel"
-            [(materializeParams)]="datePickerParams" >
+            <input type="text" materialize="pickatime" name="meetingDate" placeholder="horário desaparecimento"
+            [(ngModel)]="raid.timeClose" name="ngModel"
+            [(materializeParams)]="timePickerParams" >
           </div>
           <div class="col s6">
             <input type="text" materialize="pickatime" name="meetingTime" placeholder="horário de encontro"

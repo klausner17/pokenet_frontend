@@ -1,5 +1,7 @@
-import { RaidService } from '../raid.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { RaidService } from '../raid.service';
 import { Raid } from '../../models/Raid';
 import { PokemonGym } from '../../models/PokemonGym';
 import { Pokemon } from '../../models/Pokemon';
@@ -7,8 +9,8 @@ import { Gym } from '../../models/Gym';
 
 @Component({
   selector: 'app-new-raid',
-  templateUrl: './new-raid.component.html',
-  styleUrls: ['./new-raid.component.css']
+  templateUrl: './newraid.component.html',
+  styleUrls: ['./newraid.component.css']
 })
 export class NewRaidComponent implements OnInit {
 
@@ -19,7 +21,7 @@ export class NewRaidComponent implements OnInit {
   datePickerParams: [{}];
   timePickerParams: [{}];
 
-  constructor(private raidService: RaidService) {
+  constructor(private raidService: RaidService, private router: Router) {
     this.raid = new Raid();
     this.inicializarParams();
    }
@@ -40,16 +42,18 @@ export class NewRaidComponent implements OnInit {
   }
 
   createRaid() {
-    this.raid.meetingTime = this.stringToDate(this.raid.dateToMeet, this.raid.timeToMeet);
+    this.raid.meetingTime = this.stringToDate(undefined, this.raid.timeToMeet);
+    this.raid.timeToClose = this.stringToDate(undefined, this.raid.timeClose);
     this.raid.maxTrainners = 20;
-    this.raid.timeToClose = this.raid.meetingTime;
     for (let i = 0; i < this.pokemonsGym.length; i++) {
       if (this.pokemonsGym[i].pokemonId == this.raid.pokemonId) {
         this.raid.pokemonGymId = this.pokemonsGym[i].id;
       }
     }
     this.raidService.createRaid(this.raid)
-      .subscribe(result => console.log(result));
+      .subscribe((result: Raid) => {
+        this.router.navigate([`/raid/${result.id}`]);
+      });
   }
 
   stringToDate(dateStr?: string, timeStr?: string): Date {
@@ -71,33 +75,16 @@ export class NewRaidComponent implements OnInit {
   }
 
   inicializarParams() {
-    this.datePickerParams = [{
-      labelMonthNext: 'Próximo mês',
-      labelMonthPrev: 'Mês passado',
-      labelMonthSelect: 'Selecione um mês',
-      yearSelect: false,
-      monthsFull: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ],
-      monthsShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
-      weekdaysFull: [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado' ],
-      weekdaysShort: [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab' ],
-      weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
-      today: 'Hoje',
-      clear: 'Limpar',
-      close: 'Fechar',
-      closeOnSelect: true,
-      format: 'dd/mm/yyyy',
-      min: Date.now(),
-    }];
-
     this.timePickerParams = [{
-      twelvehour: false,
-      autoClose: true,
-      disable: [
-        {from: [5,0], to: [21,0]}
-      ],
-      ok: 'Hoje',
-      clear: 'Limpar',
-      close: 'Cancelar',
+      default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+      fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+      twelvehour: false, // Use AM/PM or 24-hour format
+      donetext: 'OK', // text for done-button
+      cleartext: 'limpar', // text for clear-button
+      canceltext: 'cancelar', // Text for cancel-button
+      autoclose: true, // automatic close timepicker
+      ampmclickable: false, // make AM PM clickable
+      aftershow: function(){} //Function for after opening timepicker
     }]
   }
 }

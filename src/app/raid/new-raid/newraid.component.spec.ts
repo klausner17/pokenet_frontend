@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewRaidComponent } from './new-raid.component';
+import { NewRaidComponent } from './newraid.component';
 
 describe('NewRaidComponent', () => {
   let component: NewRaidComponent;

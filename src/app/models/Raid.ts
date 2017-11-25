@@ -12,6 +12,7 @@ export class Raid {
   timeToMeet: string;
   meetingTime: Date;
   timeToClose: Date;
+  timeClose: string;
   maxTrainners: number;
   pokemonGym: PokemonGym;
   pokemon: Pokemon;

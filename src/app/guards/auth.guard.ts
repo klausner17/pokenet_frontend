@@ -6,7 +6,7 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
     if (this.authService.isAuthenticate())
