@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { RaidService } from '../raid.service';
@@ -16,29 +16,23 @@ export class NewRaidComponent implements OnInit {
 
   raid: Raid;
   pokemonsGym: PokemonGym[];
-  pokemons: Pokemon[];
   gyms: Gym[];
   datePickerParams: [{}];
   timePickerParams: [{}];
 
-  constructor(private raidService: RaidService, private router: Router) {
+  constructor(private raidService: RaidService, private router: Router, private activedRouter: ActivatedRoute) {
     this.raid = new Raid();
     this.inicializarParams();
    }
 
   ngOnInit() {
-    this.raidService.getGym()
-      .subscribe((result: Gym[]) => {
-        this.gyms = result;
+    this.activedRouter.data.subscribe(info => {
+      this.pokemonsGym = info.pokemonsGym;
+      this.gyms = info.gyms;
+      this.pokemonsGym.sort((a: PokemonGym, b: PokemonGym): number => {
+        return a.pokemon.name.localeCompare(b.pokemon.name);
       });
-    this.raidService.getPokemon()
-      .subscribe((result: Pokemon[]) => {
-        this.pokemons = result;
-      });
-    this.raidService.getPokemonGym()
-      .subscribe((result: PokemonGym[]) => {
-        this.pokemonsGym = result;
-      });
+    });
   }
 
   createRaid() {
@@ -46,7 +40,7 @@ export class NewRaidComponent implements OnInit {
     this.raid.timeToClose = this.stringToDate(undefined, this.raid.timeClose);
     this.raid.maxTrainners = 20;
     for (let i = 0; i < this.pokemonsGym.length; i++) {
-      if (this.pokemonsGym[i].pokemonId == this.raid.pokemonId) {
+      if (this.pokemonsGym[i].pokemon.id == this.raid.pokemonId) {
         this.raid.pokemonGymId = this.pokemonsGym[i].id;
       }
     }

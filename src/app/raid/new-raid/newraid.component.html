@@ -5,10 +5,10 @@
       <form #f="ngForm">
         <div class="row">
           <div class="col m6 s12 l6">
-            <select materialize="material_select" [materializeSelectOptions]="pokemons" [required]="true"
+            <select materialize="material_select" [materializeSelectOptions]="pokemonsGym" [required]="true"
             [(ngModel)]="raid.pokemonId" name="ngModel" class="input-field">
               <option disabled>Pokemon</option>
-              <option *ngFor="let pokemon of pokemons" [value]="pokemon.id">{{pokemon.name | titlecase}}</option>
+              <option *ngFor="let pokemonGym of pokemonsGym" [value]="pokemonGym.pokemon.id">{{pokemonGym.pokemon.name | titlecase}}</option>
             </select>
           </div>
           <div class="col s12 m6 l6">

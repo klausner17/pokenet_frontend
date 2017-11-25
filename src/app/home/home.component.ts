@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.activedRouter.data.subscribe((info) => {
-      console.log(info.raids)
       this.raids = info.raids;
     })
   }
