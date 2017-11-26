@@ -51,11 +51,12 @@
             <span >{{ trainner.name }}</span>
           </div>
         </li>
+        <li routerLink="/profile" (click)="cancel()" class="collection-item cursor-hand">
+          <diV class="align center">
+            <a>cadastrar</a>
+          </diV>
+        </li>
       </ul>
-    </div>
-    <div class="align center" *ngIf="myTrainners == undefined || myTrainners.length == 0">
-      <h5>Você ainda não cadastrou treinadores</h5>
-      <a routerLink="/profile">Clique aqui para cadastrar</a>
     </div>
   </div>
   <div class="modal-footer">
