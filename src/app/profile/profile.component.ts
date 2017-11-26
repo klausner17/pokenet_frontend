@@ -1,9 +1,9 @@
 import { Response } from '@angular/http';
 import { MaterializeAction } from 'angular2-materialize';
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Profile } from '../../models/Profile';
-import { ProfileService } from '../profile.service';
-import { Trainner } from '../../models/Trainner';
+import { Profile } from '../models/Profile';
+import { ProfileService } from './profile.service';
+import { Trainner } from '../models/Trainner';
 
 @Component({
   selector: 'app-profile',

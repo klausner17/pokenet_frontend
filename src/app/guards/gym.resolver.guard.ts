@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { RaidService } from './../raid.service';
-import { Gym } from '../../models/Gym';
+import { RaidService } from '../raid/raid.service';
+import { Gym } from '../models/Gym';
 
 @Injectable()
 export class GymResolverGuard implements Resolve<Gym[]> {
