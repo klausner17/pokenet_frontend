@@ -1,8 +1,8 @@
+import { Profile } from './Profile';
 import { RaidTrainner } from './RaidTrainner';
 import { PokemonGym } from './PokemonGym';
 import { Pokemon } from './Pokemon';
 import { Gym } from './Gym';
-import { Profile } from 'selenium-webdriver/firefox';
 
 export class Raid {
   id: number;
@@ -16,5 +16,5 @@ export class Raid {
   pokemon: Pokemon;
   gym: Gym;
   raidTrainners: RaidTrainner[];
-  user: Profile[];
+  user: Profile;
 }
