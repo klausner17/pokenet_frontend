@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 import { MaterializeAction } from 'angular2-materialize';
 import { Component, OnInit, EventEmitter } from '@angular/core';
@@ -18,23 +19,17 @@ export class ProfileComponent implements OnInit {
   modalConfirm: EventEmitter<string|MaterializeAction>;
   idToDelete: number;
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService, private activatedRoute: ActivatedRoute) {
     this.modalActions = new EventEmitter<string|MaterializeAction>();
     this.modalConfirm = new EventEmitter<string|MaterializeAction>();
-    this.profile = new Profile();
-    this.profile.trainners = new Array<Trainner>();
     this.trainnerEdit = new Trainner();
   }
 
   ngOnInit() {
-    this.profileService.getProfile()
-      .subscribe((result: Profile) => {
-        this.profile = result;
-      });
-    this.profileService.getTrainners()
-      .subscribe((result: Trainner[]) => {
-        this.profile.trainners = result;
-      });
+    this.activatedRoute.data.subscribe(info => {
+      this.profile = info.profile;
+      console.log(this.profile);
+    });
   }
 
   adicionar() {

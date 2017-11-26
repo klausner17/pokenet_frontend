@@ -1,3 +1,4 @@
+import { ProfileResolverGuard } from './guards/profile.resolver.guard';
 import { GymResolverGuard } from './guards/gym.resolver.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -23,7 +24,8 @@ const routes: Routes = [
       resolve: { raid: RaidResolverGuard, myTrainners: TrainnersResolverGuard} },
   { path: 'newraid', component: NewRaidComponent, canActivate: [AuthGuard],
       resolve: {gyms: GymResolverGuard, pokemonsGym: PokemonGymResolverGuard} },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
+      resolve: {profile: ProfileResolverGuard} },
   { path: 'processToken', component: ProcessTokenComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login'}
 ];

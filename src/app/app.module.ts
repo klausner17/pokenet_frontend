@@ -12,6 +12,7 @@ import { HomeResolverGuard } from './guards/home.resolver.guard';
 import { RaidResolverGuard } from './raid/raid.resolver.guard';
 import { PokemonGymResolverGuard } from './guards/pokemonGym.resolver.guard';
 import { GymResolverGuard } from './guards/gym.resolver.guard';
+import { ProfileResolverGuard } from "./guards/profile.resolver.guard";
 import { ProfileComponent } from './profile/profile.component';
 import { RaidService } from './raid/raid.service';
 import { ProfileService } from './profile/profile.service';
@@ -49,6 +50,7 @@ import { NewRaidComponent } from './raid/new-raid/newraid.component';
     TrainnersResolverGuard,
     GymResolverGuard,
     PokemonGymResolverGuard,
+    ProfileResolverGuard
   ],
   bootstrap: [AppComponent]
 })

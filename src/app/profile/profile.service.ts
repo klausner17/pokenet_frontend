@@ -22,10 +22,7 @@ export class ProfileService {
     return this.http.get(`${environment.backend}/user`, options)
       .map((response: Response) => response.json())
       .map((result) => {
-        const profile = new Profile();
-        profile.name = result.name;
-        console.log(result);
-        return profile;
+        return result;
       });
   }
 
