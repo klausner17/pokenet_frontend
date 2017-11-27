@@ -31,10 +31,14 @@ export class RaidComponent implements OnInit {
   ngOnInit() {
     this.activedRoute.data.subscribe(info => {
       this.raid = info.raid;
-    });
-    this.activedRoute.data.subscribe(info => {
       this.myTrainners = info.myTrainners;
     });
+  }
+
+  alreadyJoin(trainner: Trainner): boolean {
+    for(let i = 0; i < this.raid.raidTrainners.length; i++) {
+      return trainner.id == this.raid.raidTrainners[i].trainner.id;
+    }
   }
 
   join(trainner: Trainner) {
@@ -50,7 +54,7 @@ export class RaidComponent implements OnInit {
 
   allowUnjoin(trainner: Trainner): boolean {
     for (let i = 0; i < this.myTrainners.length; i++) {
-      if (trainner.userId == this.myTrainners[i].userId) return true;
+      if (trainner.user.id == this.myTrainners[i].user.id) return true;
     }
     return false;
   }
