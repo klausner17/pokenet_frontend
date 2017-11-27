@@ -6,6 +6,9 @@ import { Gym } from './Gym';
 
 export class Raid {
   id: number;
+  pokemonId: number;
+  pokemonGymId: number;
+  gymId: number;
   dateToMeet: string;
   timeToMeet: string;
   meetingTime: Date;
