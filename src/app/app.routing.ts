@@ -10,6 +10,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProcessTokenComponent } from './login/process-token/process-token.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewRaidComponent } from './raid/new-raid/newraid.component';
+import { SingupComponent } from './singup/singup.component';
 
 import { RaidResolverGuard } from './raid/raid.resolver.guard';
 import { HomeResolverGuard } from './guards/home.resolver.guard';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
       resolve: {profile: ProfileResolverGuard} },
   { path: 'processToken', component: ProcessTokenComponent },
+  { path: 'singup', component: SingupComponent },
   { path: '', pathMatch: 'full', redirectTo: 'login'}
 ];
 

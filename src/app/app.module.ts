@@ -1,10 +1,10 @@
+import { ProcessTokenComponent } from './login/process-token/process-token.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MaterializeModule } from 'angular2-materialize';
 
-import { AppRoutingModule } from './app.routing.module';
-import { LoginModule } from './login/login.module';
+import { AppRoutingModule } from './app.routing';
 
 import { AuthGuard } from './guards/auth.guard';
 import { TrainnersResolverGuard } from './guards/trainners.resolver.guard';
@@ -24,6 +24,9 @@ import { RaidComponent } from './raid/raid/raid.component';
 import { AuthService } from './auth.service';
 
 import { NewRaidComponent } from './raid/new-raid/newraid.component';
+import { SingupComponent } from './singup/singup.component';
+import { LoginService } from './login/login.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -31,16 +34,20 @@ import { NewRaidComponent } from './raid/new-raid/newraid.component';
     HomeComponent,
     RaidComponent,
     ProfileComponent,
-    NewRaidComponent
+    NewRaidComponent,
+    SingupComponent,
+    LoginComponent,
+    ProcessTokenComponent
   ],
   imports: [
     BrowserModule,
     MaterializeModule,
-    LoginModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
+    LoginService,
     AuthService,
     AuthGuard,
     ProfileService,
@@ -50,7 +57,8 @@ import { NewRaidComponent } from './raid/new-raid/newraid.component';
     TrainnersResolverGuard,
     GymResolverGuard,
     PokemonGymResolverGuard,
-    ProfileResolverGuard
+    ProfileResolverGuard,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
