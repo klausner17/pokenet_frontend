@@ -2,7 +2,7 @@
   <h4 class="align center red-text text-lighten-2">Raids abertas</h4>
 
   <div class="row">
-  <div *ngFor="let raid of raids">
+    <div *ngFor="let raid of raids">
       <div class="col m4 s12">
         <div class="card yellow lighten-4">
           <div class="card-content">
@@ -15,17 +15,6 @@
           </div>
         </div>
       </div>
-  </div>
-</div>
-
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
-      <i class="large material-icons">menu</i>
-    </a>
-    <ul>
-      <li (click)="logout()"><a class="btn-floating red"><i class="material-icons">exit_to_app</i></a></li>
-      <li><a routerLink="/profile" class="btn-floating green"><i class="material-icons">face</i></a></li>
-      <li><a routerLink="/newraid"class="btn-floating blue"><i class="material-icons">add</i></a></li>
-    </ul>
+    </div>
   </div>
 </div>

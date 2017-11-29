@@ -13,17 +13,12 @@ export class HomeComponent implements OnInit {
 
   raids: Raid[];
 
-  constructor(private activedRouter: ActivatedRoute, private authService: AuthService, private raidService: RaidService) { }
+  constructor(private activedRouter: ActivatedRoute) { }
 
   ngOnInit() {
     this.activedRouter.data.subscribe((info) => {
       this.raids = info.raids;
     })
   }
-
-  logout() {
-    this.authService.logout();
-  }
-
 
 }
