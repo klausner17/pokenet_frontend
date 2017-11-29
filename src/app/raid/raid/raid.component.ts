@@ -65,7 +65,7 @@ export class RaidComponent implements OnInit {
       .subscribe(result => {
         this.raid.raidTrainners.forEach( (element: RaidTrainner, index: number) => {
             if (element.trainner.id === trainner.id) {
-              this.raid.raidTrainners.splice(index);
+              this.raid.raidTrainners.splice(index, 1);
             }
           });
       });
