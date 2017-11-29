@@ -1,11 +1,13 @@
 import { AuthService } from './../auth.service';
 import { environment } from './../../environments/environment';
+import * as NodeRSA from 'node-rsa';
 import { Profile } from './../models/Profile';
 import { User } from './../models/User';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class LoginService {
@@ -18,7 +20,7 @@ export class LoginService {
       .map((response: Response) => response.json())
       .map((result: {}) => {
         this.authService.authenticate(result['token']); return result
-      });
+      })
   }
 
 

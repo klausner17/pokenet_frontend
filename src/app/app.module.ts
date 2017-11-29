@@ -1,3 +1,4 @@
+import { KeyResolverGuard } from './guards/key.resolver.guard';
 import { ProcessTokenComponent } from './login/process-token/process-token.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -58,7 +59,8 @@ import { HttpModule } from '@angular/http';
     GymResolverGuard,
     PokemonGymResolverGuard,
     ProfileResolverGuard,
-    LoginService
+    LoginService,
+    KeyResolverGuard
   ],
   bootstrap: [AppComponent]
 })

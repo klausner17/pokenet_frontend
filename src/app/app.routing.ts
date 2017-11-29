@@ -1,5 +1,3 @@
-import { ProfileResolverGuard } from './guards/profile.resolver.guard';
-import { GymResolverGuard } from './guards/gym.resolver.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -16,9 +14,13 @@ import { RaidResolverGuard } from './raid/raid.resolver.guard';
 import { HomeResolverGuard } from './guards/home.resolver.guard';
 import { TrainnersResolverGuard } from './guards/trainners.resolver.guard';
 import { PokemonGymResolverGuard } from './guards/pokemonGym.resolver.guard';
+import { KeyResolverGuard } from './guards/key.resolver.guard';
+import { ProfileResolverGuard } from './guards/profile.resolver.guard';
+import { GymResolverGuard } from './guards/gym.resolver.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent,
+      resolve: {pub: KeyResolverGuard } },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
       resolve: {raids: HomeResolverGuard} },
   { path: 'raid/:id', component: RaidComponent, canActivate: [AuthGuard],
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
       resolve: {profile: ProfileResolverGuard} },
   { path: 'processToken', component: ProcessTokenComponent },
-  { path: 'singup', component: SingupComponent },
+  { path: 'singup', component: SingupComponent,
+      resolve: {pub: KeyResolverGuard} },
   { path: '', pathMatch: 'full', redirectTo: 'login'}
 ];
 
