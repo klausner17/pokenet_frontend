@@ -1,6 +1,5 @@
-<div class="container">
-  <a class="align left" href="/home">voltar</a>
-  <h5 class="align center">{{ profile.name }}</h5>
+<div class="container purple-text text-darken-3">
+  <h4 class="align center">{{ profile.name }}</h4>
   <div class="row">
     <div class="align center" *ngIf="profile.trainners === undefined || profile.trainners.length == 0">
       <span>Você ainda não cadastrou nenhum treinador</span>
@@ -12,7 +11,7 @@
             <span>{{ trainner.name }}</span>
           </div>
           <div class="col s3">
-            <span class="orange-text"> nível {{ trainner.level }}</span>
+            <span class="grey-text"> nível {{ trainner.level }}</span>
           </div>
           <div class="col s4">
             <a (click)="openConfirm(trainner.id)" class="secondary-content button-collection red-text"><i class="material-icons">delete</i></a>
