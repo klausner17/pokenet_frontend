@@ -37,7 +37,7 @@ export class NewRaidComponent implements OnInit {
 
   createRaid() {
     this.raid.meetingTime = this.stringToDate(undefined, this.raid.timeToMeet);
-    this.raid.timeToClose = this.stringToDate(undefined, this.raid.timeClose);
+    this.raid.timeToClose = this.stringToDate(undefined, this.raid.timeToMeet);
     this.raid.maxTrainners = 20;
     for (let i = 0; i < this.pokemonsGym.length; i++) {
       if (this.pokemonsGym[i].pokemon.id == this.raid.pokemonId) {
