@@ -2,7 +2,7 @@ import { KeyResolverGuard } from './guards/key.resolver.guard';
 import { ProcessTokenComponent } from './login/process-token/process-token.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { AppRoutingModule } from './app.routing';
@@ -45,7 +45,8 @@ import { HttpModule } from '@angular/http';
     MaterializeModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
   ],
   providers: [
     LoginService,

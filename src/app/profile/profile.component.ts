@@ -5,6 +5,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Profile } from '../models/Profile';
 import { ProfileService } from './profile.service';
 import { Trainner } from '../models/Trainner';
+import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -18,11 +19,13 @@ export class ProfileComponent implements OnInit {
   modalActions: EventEmitter<string|MaterializeAction>;
   modalConfirm: EventEmitter<string|MaterializeAction>;
   idToDelete: number;
+  trainnerForm: FormGroup;
 
-  constructor(private profileService: ProfileService, private activatedRoute: ActivatedRoute) {
+  constructor(private profileService: ProfileService, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
     this.modalActions = new EventEmitter<string|MaterializeAction>();
     this.modalConfirm = new EventEmitter<string|MaterializeAction>();
     this.trainnerEdit = new Trainner();
+    this.createForm();
   }
 
   ngOnInit() {
@@ -31,7 +34,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  createForm() {
+    this.trainnerForm = this.formBuilder.group({
+      name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
+      level: ['', Validators.compose([Validators.required, Validators.max(40), Validators.min(0)])]
+    });
+  }
+
   adicionar() {
+    this.trainnerEdit = this.trainnerForm.value;
     this.profileService.addTrainner(this.trainnerEdit)
       .subscribe(result => {
         this.trainnerEdit = new Trainner();
@@ -49,7 +60,7 @@ export class ProfileComponent implements OnInit {
         this.profile.trainners.forEach((element: Trainner, index: number) => {
           if (element.id === this.idToDelete) {
             this.idToDelete = -1;
-            this.profile.trainners.splice(index);
+            this.profile.trainners.splice(index, 1);
           }
         });
       });
@@ -59,6 +70,7 @@ export class ProfileComponent implements OnInit {
     this.modalActions.emit({action: 'modal', params: ['open']});
   }
   closeModal() {
+    this.trainnerEdit = new Trainner();
     this.modalActions.emit({action: 'modal', params: ['close']});
   }
 

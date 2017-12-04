@@ -19,20 +19,22 @@
           </div>
         </li>
       </ul>
-    <a class="waves-effect waves-light btn modal-trigger align right" (click)="openModal()">novo</a>
+      <div class="fixed-action-btn" style="bottom: 75px; right: 30px">
+        <button class="btn-floating purple darken-2" (click)="openModal()"><i class="material-icons">add</i></button>
+      </div>
     </div>
   </div>
   <!-- Modal Structure -->
   <div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
     <div class="modal-content">
-      <form #f="ngForm">
-        <input placeholder="nome" type="text" id="name" name="name" [(ngModel)]="trainnerEdit.name" #name="ngModel" required>
-        <input placeholder="nível" type="number" id="level" min="0" max="40" max name="level" [(ngModel)]="trainnerEdit.level" #name="ngModel" required>
+      <form [formGroup]="trainnerForm" novalidate>
+        <input placeholder="nome" class="form-input" formControlName="name">
+        <input placeholder="nível de 1 a 40" formControlName="level">
       </form>
     </div>
     <div class="modal-footer">
       <a class="waves-effect waves-green btn-flat" (click)="closeModal()">fechar</a>
-      <a class="modal-action modal-close waves-effect waves-green btn-flat green-text" (click)="adicionar()">salvar</a>
+      <button [disabled]="trainnerForm.invalid" type="submit" class="modal-action modal-close btn-flat green-text" (click)="adicionar()">salvar</button>
     </div>
   </div>
 
