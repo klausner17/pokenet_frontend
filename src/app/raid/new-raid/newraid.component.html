@@ -17,12 +17,12 @@
               <option *ngFor="let gym of gyms" [value]="gym.id">{{gym.alias}}</option>
             </select>
           </div>
+          <div class="col s12">
+            <input type="text" materialize="pickatime" name="meetingTime" placeholder="horário de encontro" [(ngModel)]="raid.timeToMeet"
+              name="ngModel" [(materializeParams)]="timePickerParams">
+          </div>
+          <button class="btn align right green darken-3" (click)="createRaid()">criar</button>
         </div>
-        <div class="col s12">
-          <input type="text" materialize="pickatime" name="meetingTime" placeholder="horário de encontro" [(ngModel)]="raid.timeToMeet"
-            name="ngModel" [(materializeParams)]="timePickerParams">
-        </div>
-        <button class="btn align right green darken-3" (click)="createRaid()">criar</button>
       </form>
     </div>
   </div>
