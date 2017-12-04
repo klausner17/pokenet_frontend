@@ -6,7 +6,11 @@
   background-color: white;
   color: #757575;
   text-align: center;
-  padding-top: 20px;
+  margin-bottom: -15px;
+}
+
+.footer .row {
+  margin-top: 10px;
 }
 
 .footer a {

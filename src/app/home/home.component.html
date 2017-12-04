@@ -1,17 +1,19 @@
-<div class="container">
-  <h4 class="align center light-blue-text text-darken-3">Raids abertas</h4>
+<div class="container-fluid">
+  <div class="z-depth-2 light-blue darken-3" style="margin-bottom: 10px">
+    <span class="title white-text">Raids abertas</span>
+  </div>
 
   <div class="row">
     <div *ngFor="let raid of raids">
-      <div class="col m4 s12">
-        <div class="card yellow lighten-4">
+      <div class="col s12 m6 l4">
+        <div class="card z-depth-2 white light-blue-text text-darken-3 ">
           <div class="card-content">
-            <h5>{{ raid.pokemonGym.pokemon.name | titlecase}}</h5>
+            <span style="font-size: 18px; font-weight: 500">{{ raid.pokemonGym.pokemon.name | titlecase}}</span>
             <p>{{ raid.gym.name }}</p>
-            <span>{{ raid.meetingTime | date: 'HH:mm' }}</span>
+            <span>Horário: {{ raid.meetingTime | date: 'HH:mm' }}</span>
           </div>
           <div class="card-action">
-            <a href="/raid/{{raid.id}}">detalhes</a>
+            <a href="/raid/{{raid.id}}" >detalhes</a>
           </div>
         </div>
       </div>

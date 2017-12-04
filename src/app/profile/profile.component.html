@@ -1,4 +1,7 @@
-<div class="container purple-text text-darken-3">
+<div class="container-fluid purple-text text-darken-3">
+  <div class="purple darken-3 white-text">
+    <span class="title">Perfil</span>
+  </div>
   <h4 class="align center">{{ profile.name }}</h4>
   <div class="row">
     <div class="align center" *ngIf="profile.trainners === undefined || profile.trainners.length == 0">
@@ -19,7 +22,7 @@
           </div>
         </li>
       </ul>
-      <div class="fixed-action-btn" style="bottom: 75px; right: 30px">
+      <div class="fixed-action-btn" style="bottom: 85px; right: 30px">
         <button class="btn-floating large purple darken-2" (click)="openModal()"><i class="material-icons">add</i></button>
       </div>
     </div>
