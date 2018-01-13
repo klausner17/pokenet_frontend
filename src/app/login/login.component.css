@@ -6,6 +6,49 @@
 }
 
 .title-login {
-  padding: 10px 0px;
+  padding: 30px 0px 10px 0px;
 }
 
+.subtitle-login {
+  margin: 10px 10px 30px 10px;
+}
+
+
+.f {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+.b {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60%;
+  width: 100%;
+}
+.w {
+  position: relative;
+  width: 100%;
+  height: 45%;
+  margin: 0 auto;
+  top: 40%;
+}
+
+.full {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

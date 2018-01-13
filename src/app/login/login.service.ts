@@ -19,8 +19,9 @@ export class LoginService {
     return this.http.post(`${environment.backend}/token`, user)
       .map((response: Response) => response.json())
       .map((result: {}) => {
-        this.authService.authenticate(result['token']); return result
-      })
+        this.authService.authenticate(result['token']);
+        return result;
+      });
   }
 
 
