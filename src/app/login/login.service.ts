@@ -1,6 +1,5 @@
 import { AuthService } from './../auth.service';
 import { environment } from './../../environments/environment';
-import * as NodeRSA from 'node-rsa';
 import { Profile } from './../models/Profile';
 import { User } from './../models/User';
 import { Injectable } from '@angular/core';
@@ -19,8 +18,9 @@ export class LoginService {
     return this.http.post(`${environment.backend}/token`, user)
       .map((response: Response) => response.json())
       .map((result: {}) => {
-        this.authService.authenticate(result['token']); return result
-      })
+        this.authService.authenticate(result['token']);
+        return result;
+      });
   }
 
 
