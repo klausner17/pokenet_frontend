@@ -1,5 +1,5 @@
-<div class="container-fluid purple-text text-darken-3">
-  <div class="purple darken-3 white-text">
+<div class="container-fluid">
+  <div class="red darken-1 white-text z-depth-2">
     <span class="title">Perfil</span>
   </div>
   <h4 class="align center">{{ profile.name }}</h4>
@@ -17,13 +17,13 @@
             <span class="grey-text"> nível {{ trainner.level }}</span>
           </div>
           <div class="col s4">
-            <a (click)="openConfirm(trainner.id)" class="secondary-content button-collection red-text"><i class="material-icons">delete</i></a>
+            <a (click)="openConfirm(trainner.id)" class="secondary-content button-collection grey-text"><i class="material-icons">delete</i></a>
             <!-- <a class="secondary-content button-collection green-text"><i class="material-icons">edit</i></a> -->
           </div>
         </li>
       </ul>
       <div class="fixed-action-btn" style="bottom: 85px; right: 30px">
-        <button class="btn-floating large purple darken-2" (click)="openModal()"><i class="material-icons">add</i></button>
+        <button class="btn-floating large red darken-1" (click)="openModal()"><i class="material-icons">add</i></button>
       </div>
     </div>
   </div>

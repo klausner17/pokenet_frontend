@@ -3,21 +3,21 @@
   </router-outlet>
 </div>
 
-<div class="footer z-depth-3" *ngIf="logged()">
+<div class="footer z-depth-2" *ngIf="logged()">
   <div class="row">
     <div class="col s12">
-      <div class="col s3" routerLinkActive="home-active">
-        <a routerLink="home">
+      <div class="col s3" >
+        <a routerLink="home" routerLinkActive="red-text text-darken-1">
           <i class="material-icons">home</i>
         </a>
       </div>
-      <div class="col s3" routerLinkActive="newraid-active">
-        <a routerLink="newraid" >
+      <div class="col s3">
+        <a routerLink="newraid" routerLinkActive="red-text text-darken-1">
           <i class="material-icons">add</i>
         </a>
       </div>
-      <div class="col s3" routerLinkActive="profile-active">
-        <a routerLink="profile">
+      <div class="col s3">
+        <a routerLink="profile" routerLinkActive="red-text text-darken-1">
           <i class="material-icons">face</i>
         </a>
       </div>
