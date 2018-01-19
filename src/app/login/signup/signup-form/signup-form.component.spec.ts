@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProcessTokenComponent } from './process-token.component';
+import { SignupFormComponent } from './signup-form.component';
 
-describe('ProcessTokenComponent', () => {
-  let component: ProcessTokenComponent;
-  let fixture: ComponentFixture<ProcessTokenComponent>;
+describe('SignupFormComponent', () => {
+  let component: SignupFormComponent;
+  let fixture: ComponentFixture<SignupFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProcessTokenComponent ]
+      declarations: [ SignupFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProcessTokenComponent);
+    fixture = TestBed.createComponent(SignupFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

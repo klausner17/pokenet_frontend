@@ -12,28 +12,15 @@ import { toast } from 'angular2-materialize';
 })
 export class LoginComponent implements OnInit {
 
-  user: User;
-
   constructor(private loginService: LoginService,
     private router: Router,
-    authService: AuthService,
-    private activedRouter: ActivatedRoute) {
-      this.user = new User();
-      if(authService.isAuthenticate())
-        router.navigate(['/home'])
+    private authService: AuthService,
+    private activedRouter: ActivatedRoute) {  }
+
+  ngOnInit() {
+    if (this.authService.isAuthenticate()) {
+      this.router.navigate(['/home']);
     }
-
-  ngOnInit() { }
-
-  login() {
-    this.loginService.login(this.user)
-      .subscribe(result => {
-        this.router.navigate(['/home']);
-      }, error => {
-        let toastContent =
-          `<span>Dados inválidos</span>`;
-        toast(toastContent, 3000, 'red');
-      })
   }
 
 }

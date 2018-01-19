@@ -1,5 +1,4 @@
 import { KeyResolverGuard } from './guards/key.resolver.guard';
-import { ProcessTokenComponent } from './login/process-token/process-token.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +12,7 @@ import { HomeResolverGuard } from './guards/home.resolver.guard';
 import { RaidResolverGuard } from './raid/raid.resolver.guard';
 import { PokemonGymResolverGuard } from './guards/pokemonGym.resolver.guard';
 import { GymResolverGuard } from './guards/gym.resolver.guard';
-import { ProfileResolverGuard } from "./guards/profile.resolver.guard";
+import { ProfileResolverGuard } from './guards/profile.resolver.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { RaidService } from './raid/raid.service';
 import { ProfileService } from './profile/profile.service';
@@ -25,9 +24,11 @@ import { RaidComponent } from './raid/raid/raid.component';
 import { AuthService } from './auth.service';
 
 import { NewRaidComponent } from './raid/new-raid/newraid.component';
-import { SingupComponent } from './singup/singup.component';
 import { LoginService } from './login/login.service';
 import { HttpModule } from '@angular/http';
+import { SignupFormComponent } from './login/signup/signup-form/signup-form.component';
+import { LoginFormComponent } from './login/login/login-form/login-form.component';
+import { MaterializeDirective } from 'angular2-materialize/dist/materialize-directive';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,9 @@ import { HttpModule } from '@angular/http';
     RaidComponent,
     ProfileComponent,
     NewRaidComponent,
-    SingupComponent,
     LoginComponent,
-    ProcessTokenComponent
+    SignupFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

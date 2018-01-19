@@ -13,3 +13,43 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.div-vertically {
+  height: 90px;
+  max-width: 600px;
+  line-height: 90px;
+  margin-top: 5%;
+}
+
+.title-login {
+  padding: 30px 0px 10px 0px;
+}
+
+.subtitle-login {
+  margin: 10px 10px 30px 10px;
+}
+
+.superior {
+  border-bottom: 5px solid black;
+  padding: 50px 0px 200px 0px;
+  margin-top: 0px;
+}
+
+.formulario {
+  position: absolute;
+  top: 250px;
+  border-radius: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  max-width: 1000px;
+}
+
+.radius {
+  border-radius: 15px;
+}
+
+.radius-100{
+  border-radius: 100%;
+}

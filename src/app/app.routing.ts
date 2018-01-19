@@ -5,10 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { RaidComponent } from './raid/raid/raid.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ProcessTokenComponent } from './login/process-token/process-token.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewRaidComponent } from './raid/new-raid/newraid.component';
-import { SingupComponent } from './singup/singup.component';
 
 import { RaidResolverGuard } from './raid/raid.resolver.guard';
 import { HomeResolverGuard } from './guards/home.resolver.guard';
@@ -29,9 +27,6 @@ const routes: Routes = [
       resolve: {gyms: GymResolverGuard, pokemonsGym: PokemonGymResolverGuard} },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],
       resolve: {profile: ProfileResolverGuard} },
-  { path: 'processToken', component: ProcessTokenComponent },
-  { path: 'singup', component: SingupComponent,
-      resolve: {pub: KeyResolverGuard} },
   { path: '', pathMatch: 'full', redirectTo: 'login'}
 ];
 
