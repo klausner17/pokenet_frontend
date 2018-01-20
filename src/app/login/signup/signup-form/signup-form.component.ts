@@ -34,7 +34,10 @@ export class SignupFormComponent implements OnInit {
   }
 
   signUp() {
-    console.log(this.user);
+    this.user = new User();
+    this.user.name = this.formSignup.controls.name.value;
+    this.user.email = this.formSignup.controls.email.value;
+    this.user.password = this.formSignup.controls.password.value;
     this.loginService.register(this.user)
       .subscribe( (resultSign) => {
         this.loginService.login(this.user)

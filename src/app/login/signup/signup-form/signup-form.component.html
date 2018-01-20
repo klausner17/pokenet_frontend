@@ -1,23 +1,17 @@
-<div class="formulario">
-  <div class="row">
-    <div class="col s10 m6 offset-s1 offset-m3 radius white z-depth-2">
-      <form #f="ngForm" [formGroup]="signupForm" ngNativeValidate>
-        <div class="input-field">
-          <label for="name">Nome</label>
-          <input type="text" id="name" name="name" formControlName="name">
-        </div>
-        <div class="input-field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" formControlName="email">
-        </div>
-        <div class="input-field">
-          <label for="password">Senha</label>
-          <input type="password" id="password" name="password"  formControlName="password">
-        </div>
-        <div class="row">
-          <button [disabled]="!user.email || !user.password" class="btn grey darken-4 center-block" type="submit" (click)="signUp()">Cadastrar</button>
-        </div>
-      </form>
-    </div>
+<form [formGroup]="formSignup" ngNativeValidate>
+  <div class="input-field">
+    <label for="name">Nome</label>
+    <input type="text" name="name" formControlName="name">
   </div>
-</div>
+  <div class="input-field">
+    <label for="email">Email</label>
+    <input type="email" name="email" formControlName="email">
+  </div>
+  <div class="input-field">
+    <label for="password">Senha</label>
+    <input type="password" name="password" formControlName="password">
+  </div>
+  <div class="row">
+    <button [disabled]="!formSignup.valid" class="btn grey darken-4 center-block" type="submit" (click)="signUp()">Cadastrar</button>
+  </div>
+</form>
