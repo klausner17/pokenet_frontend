@@ -5,28 +5,33 @@
     </div>
   </div>
 
-  <ul materialize="tabs" class="tabs">
-    <li class="tab col s6"><a href="#login">Login</a></li>
-    <li class="tab col s6"><a href="#signup">Cadastro</a></li>
-  </ul>
 
-  <div class="formulario" id="login">
-    <div class="row">
-      <div class="col s10 m6 offset-s1 offset-m3 radius white z-depth-2">
-        <app-login-form>
 
-        </app-login-form>
+
+
+  <div class="center-absolute">
+    <div class="row change-form no-gutter">
+      <div class="col s10 m6 offset-s1 offset-m3"  style="padding: 0px;">
+        <ul materialize="tabs" class="tabs radius-opt indicator">
+          <li class="tab col s6">
+            <a href="#login" class="black-text">Login</a>
+          </li>
+          <li class="tab col s6">
+            <a href="#signup" class="black-text">Cadastro</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+    <div class="row" id=login>
+      <app-login-form class="col s10 m6 offset-s1 offset-m3 form-content white z-depth-2">
 
-  <div class="formulario" id="signup">
-    <div class="row">
-      <div class="col s10 m6 offset-s1 offset-m3 radius white z-depth-2">
-        <app-signup-form>
+      </app-login-form>
+    </div>
 
-        </app-signup-form>
-      </div>
+    <div class="row" id="signup">
+      <app-signup-form class="col s10 m6 offset-s1 offset-m3 form-content white z-depth-2">
+
+      </app-signup-form>
     </div>
   </div>
 </div>

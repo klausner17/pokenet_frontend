@@ -1,25 +1,4 @@
-.div-vertically {
-  height: 90px;
-  max-width: 600px;
-  line-height: 90px;
-  margin-top: 5%;
-}
-
-.title-login {
-  padding: 30px 0px 10px 0px;
-}
-
-.subtitle-login {
-  margin: 10px 10px 30px 10px;
-}
-
-.superior {
-  border-bottom: 5px solid black;
-  padding: 50px 0px 200px 0px;
-  margin-top: 0px;
-}
-
-.formulario {
+.center-absolute {
   position: absolute;
   top: 250px;
   border-radius: 100px;
@@ -30,10 +9,21 @@
   max-width: 1000px;
 }
 
-.radius {
-  border-radius: 15px;
+.form-content {
+  border-radius: 0px 0px 15px 15px;
+  padding: 15px 20px 0px 20px;
 }
 
 .radius-100{
   border-radius: 100%;
 }
+
+.change-form {
+  margin-bottom: 0px;
+  z-index: 1;
+}
+
+.radius-opt {
+  border-radius: 15px 15px 0px 0px;
+}
+

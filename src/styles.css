@@ -53,3 +53,8 @@
 .radius-100{
   border-radius: 100%;
 }
+
+
+.no-gutter {
+  padding: 0;
+}
