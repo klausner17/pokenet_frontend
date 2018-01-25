@@ -43,9 +43,13 @@ export class LoginFormComponent implements OnInit {
       .subscribe(result => {
         this.router.navigate(['/home']);
       }, error => {
-        const toastContent =
-          `<span>Dados inválidos</span>`;
-        toast(toastContent, 3000, 'red');
+        let toastMessage = '';
+        if (error.status === 0) {
+          toastMessage = 'Servidor inacessível. Tente mais tarde.';
+        } else if (error.status === 401) {
+          toastMessage = 'Email ou senha incorreta.';
+        }
+        toast(toastMessage, 3000, 'red');
       });
   }
 }
