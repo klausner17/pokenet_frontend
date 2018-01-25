@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
 
-  private formLogin: FormGroup;
+  formLogin: FormGroup;
   user: User;
 
   constructor(
