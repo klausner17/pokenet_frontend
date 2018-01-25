@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../login/login.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { toast } from 'angular2-materialize';
 
 @Component({
   selector: 'app-signup-form',
@@ -44,6 +45,14 @@ export class SignupFormComponent implements OnInit {
           .subscribe(resultLogin => {
             this.router.navigate(['/home']);
           });
+      }, error => {
+        let toastMessage = '';
+        if (error.status === 0) {
+          toastMessage = 'Servidor inacessível. Tente mais tarde.';
+        } else if (error.status === 412) {
+          toastMessage = 'Email já cadastrado.';
+        }
+        toast(toastMessage, 3000, 'red');
       });
   }
 
