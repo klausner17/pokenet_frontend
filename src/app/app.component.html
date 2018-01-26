@@ -1,29 +1,32 @@
-<div style="margin-bottom: 70px">
-  <router-outlet>
-  </router-outlet>
-</div>
+<block-ui [template]="snorlaxTemplate">
 
-<div class="footer z-depth-2" *ngIf="logged()">
-  <div class="row">
-    <div class="col s12">
-      <div class="col s3" >
-        <a routerLink="home" routerLinkActive="red-text text-darken-1">
-          <i class="material-icons">home</i>
-        </a>
-      </div>
-      <div class="col s3">
-        <a routerLink="newraid" routerLinkActive="red-text text-darken-1">
-          <i class="material-icons">add</i>
-        </a>
-      </div>
-      <div class="col s3">
-        <a routerLink="profile" routerLinkActive="red-text text-darken-1">
-          <i class="material-icons">face</i>
-        </a>
-      </div>
-      <div class="col s3" (click)="logout()">
-        <i class="material-icons">exit_to_app</i>
+  <div style="margin-bottom: 70px">
+    <router-outlet>
+    </router-outlet>
+  </div>
+
+  <div class="footer z-depth-2" *ngIf="logged()">
+    <div class="row">
+      <div class="col s12">
+        <div class="col s3">
+          <a routerLink="home" routerLinkActive="red-text text-darken-1">
+            <i class="material-icons">home</i>
+          </a>
+        </div>
+        <div class="col s3">
+          <a routerLink="newraid" routerLinkActive="red-text text-darken-1">
+            <i class="material-icons">add</i>
+          </a>
+        </div>
+        <div class="col s3">
+          <a routerLink="profile" routerLinkActive="red-text text-darken-1">
+            <i class="material-icons">face</i>
+          </a>
+        </div>
+        <div class="col s3" (click)="logout()">
+          <i class="material-icons">exit_to_app</i>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</block-ui>

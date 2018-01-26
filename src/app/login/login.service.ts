@@ -11,7 +11,6 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class LoginService {
 
-
   constructor(private http: Http, private authService: AuthService) { }
 
   login(user: User) {

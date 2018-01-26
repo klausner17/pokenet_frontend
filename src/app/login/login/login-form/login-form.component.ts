@@ -1,3 +1,4 @@
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { User } from '../../../models/User';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../login.service';
@@ -13,6 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
 
+  @BlockUI() blockUI: NgBlockUI;
   formLogin: FormGroup;
   user: User;
 
@@ -39,9 +41,11 @@ export class LoginFormComponent implements OnInit {
     this.user = new User();
     this.user.email = this.formLogin.controls.email.value;
     this.user.password = this.formLogin.controls.password.value;
+    this.blockUI.start('Loading...');
     this.loginService.login(this.user)
       .subscribe(result => {
         this.router.navigate(['/home']);
+        this.blockUI.stop();
       }, error => {
         let toastMessage = '';
         if (error.status === 0) {
@@ -49,6 +53,7 @@ export class LoginFormComponent implements OnInit {
         } else if (error.status === 401) {
           toastMessage = 'Email ou senha incorreta.';
         }
+        this.blockUI.stop();
         toast(toastMessage, 3000, 'red');
       });
   }

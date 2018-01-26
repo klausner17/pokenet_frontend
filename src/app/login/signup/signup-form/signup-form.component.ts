@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../login/login.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { toast } from 'angular2-materialize';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-signup-form',
@@ -12,6 +13,7 @@ import { toast } from 'angular2-materialize';
 })
 export class SignupFormComponent implements OnInit {
 
+  @BlockUI() blockUI: NgBlockUI;
   formSignup: FormGroup;
   user: User;
 
@@ -39,12 +41,14 @@ export class SignupFormComponent implements OnInit {
     this.user.name = this.formSignup.controls.name.value;
     this.user.email = this.formSignup.controls.email.value;
     this.user.password = this.formSignup.controls.password.value;
+    this.blockUI.start();
     this.loginService.register(this.user)
       .subscribe( (resultSign) => {
         this.loginService.login(this.user)
           .subscribe(resultLogin => {
             this.router.navigate(['/home']);
           });
+        this.blockUI.stop();
       }, error => {
         let toastMessage = '';
         if (error.status === 0) {
@@ -52,6 +56,7 @@ export class SignupFormComponent implements OnInit {
         } else if (error.status === 412) {
           toastMessage = 'Email já cadastrado.';
         }
+        this.blockUI.stop();
         toast(toastMessage, 3000, 'red');
       });
   }

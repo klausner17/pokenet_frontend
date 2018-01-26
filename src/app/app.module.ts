@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterializeModule } from 'angular2-materialize';
+import { BlockUIModule } from 'ng-block-ui';
 
 import { AppRoutingModule } from './app.routing';
 
@@ -29,6 +30,7 @@ import { HttpModule } from '@angular/http';
 import { SignupFormComponent } from './login/signup/signup-form/signup-form.component';
 import { LoginFormComponent } from './login/login/login-form/login-form.component';
 import { MaterializeDirective } from 'angular2-materialize/dist/materialize-directive';
+import { SnorlaxLoadingComponent } from './utils/snorlax-loading/snorlax-loading.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { MaterializeDirective } from 'angular2-materialize/dist/materialize-dire
     NewRaidComponent,
     LoginComponent,
     SignupFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SnorlaxLoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { MaterializeDirective } from 'angular2-materialize/dist/materialize-dire
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BlockUIModule
   ],
   providers: [
     LoginService,
@@ -64,6 +68,9 @@ import { MaterializeDirective } from 'angular2-materialize/dist/materialize-dire
     LoginService,
     KeyResolverGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    SnorlaxLoadingComponent
+  ]
 })
 export class AppModule { }
