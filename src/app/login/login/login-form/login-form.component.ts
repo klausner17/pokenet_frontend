@@ -41,7 +41,7 @@ export class LoginFormComponent implements OnInit {
     this.user = new User();
     this.user.email = this.formLogin.controls.email.value;
     this.user.password = this.formLogin.controls.password.value;
-    this.blockUI.start('Loading...');
+    this.blockUI.start();
     this.loginService.login(this.user)
       .subscribe(result => {
         this.router.navigate(['/home']);

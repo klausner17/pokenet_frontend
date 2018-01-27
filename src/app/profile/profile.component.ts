@@ -41,14 +41,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  adicionar() {
-    this.trainnerEdit = this.trainnerForm.value;
-    this.profileService.addTrainner(this.trainnerEdit)
-      .subscribe(result => {
-        this.trainnerEdit = new Trainner();
-        this.profile.trainners.push(result);
-      });
-  }
 
   deletar(id: number) {
     this.idToDelete = id;
