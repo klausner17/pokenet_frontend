@@ -34,6 +34,7 @@ import { SnorlaxLoadingComponent } from './utils/snorlax-loading/snorlax-loading
 import { NewTrainnerModalComponent } from './profile/new-trainner-modal/new-trainner-modal.component';
 import { DeleteModalComponent } from './profile/delete-modal/delete-modal.component';
 import { EditTrainnerComponent } from './profile/edit-trainner/edit-trainner.component';
+import { RaidResumeComponent } from './raid/raid-resume/raid-resume.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EditTrainnerComponent } from './profile/edit-trainner/edit-trainner.com
     SnorlaxLoadingComponent,
     NewTrainnerModalComponent,
     DeleteModalComponent,
-    EditTrainnerComponent
+    EditTrainnerComponent,
+    RaidResumeComponent
   ],
   imports: [
     BrowserModule,

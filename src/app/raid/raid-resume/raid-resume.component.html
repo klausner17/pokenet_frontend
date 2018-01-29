@@ -1,0 +1,10 @@
+<div class="row z-depth-2 detail-raid" (click)="viewRaid()">
+  <div class="col s4">
+    <img class="poke-img" src="assets/raid.png" >
+  </div>
+  <div class="col s8">
+    <strong class="red-text darken-1">Pokemón:</strong> {{ raid.pokemonGym.pokemon.name | titlecase }}
+    <br><strong class="red-text darken-1">Local:</strong> {{ raid.gym.alias | titlecase }}
+    <br><strong class="red-text darken-1">Horário:</strong> {{ raid.meetingTime | date : 'HH:mm' }}
+  </div>
+</div>

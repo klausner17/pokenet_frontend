@@ -70,8 +70,4 @@ export class EditTrainnerComponent implements OnInit {
         toast(toastMessage, Parameter.toastTime, 'red');
       });
   }
-
-
-
-
 }

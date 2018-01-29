@@ -4,19 +4,8 @@
   </div>
 
   <div class="row">
-    <div *ngFor="let raid of raids">
-      <div class="col s12 m6 l4">
-        <div class="card z-depth-2 white light-blue-text text-darken-3 ">
-          <div class="card-content">
-            <span style="font-size: 18px; font-weight: 500">{{ raid.pokemonGym.pokemon.name | titlecase}}</span>
-            <p>{{ raid.gym.name }}</p>
-            <span>Horário: {{ raid.meetingTime | date: 'HH:mm' }}</span>
-          </div>
-          <div class="card-action">
-            <a href="/raid/{{raid.id}}" >detalhes</a>
-          </div>
-        </div>
-      </div>
+    <div class="col s12">
+      <app-raid-resume class="col s12 m6 l3" *ngFor="let raid of raids" [raid]="raid"></app-raid-resume>
     </div>
   </div>
 </div>
