@@ -23,12 +23,12 @@
         </li>
       </ul>
       <div class="fixed-action-btn" style="bottom: 85px; right: 30px">
-        <button class="btn-floating red darken-1" (click)="openModal()"><i class="material-icons">add</i></button>
+        <button class="btn-floating red darken-1" (click)="openModal(modalNewTrainner)"><i class="material-icons">add</i></button>
       </div>
     </div>
   </div>
 
-  <app-new-trainner-modal>
+  <app-new-trainner-modal #modalNewTrainner (onUpdated)='updateListTrainner($event)'>
 
   </app-new-trainner-modal>
 

@@ -1,3 +1,4 @@
+import { NewTrainnerModalComponent } from './new-trainner-modal/new-trainner-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 import { MaterializeAction } from 'angular2-materialize';
@@ -19,13 +20,9 @@ export class ProfileComponent implements OnInit {
   modalActions: EventEmitter<string|MaterializeAction>;
   modalConfirm: EventEmitter<string|MaterializeAction>;
   idToDelete: number;
-  trainnerForm: FormGroup;
 
   constructor(private profileService: ProfileService, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
-    this.modalActions = new EventEmitter<string|MaterializeAction>();
     this.modalConfirm = new EventEmitter<string|MaterializeAction>();
-    this.trainnerEdit = new Trainner();
-    this.createForm();
   }
 
   ngOnInit() {
@@ -34,13 +31,13 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  createForm() {
-    this.trainnerForm = this.formBuilder.group({
-      name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
-      level: ['', Validators.compose([Validators.required, Validators.max(40), Validators.min(0)])]
-    });
+  openModal(modal: NewTrainnerModalComponent) {
+    modal.showModal(true);
   }
 
+  updateListTrainner(trainner: Trainner) {
+    this.profile.trainners.push(trainner);
+  }
 
   deletar(id: number) {
     this.idToDelete = id;
@@ -56,14 +53,6 @@ export class ProfileComponent implements OnInit {
           }
         });
       });
-  }
-
-  openModal() {
-    this.modalActions.emit({action: 'modal', params: ['open']});
-  }
-  closeModal() {
-    this.trainnerEdit = new Trainner();
-    this.modalActions.emit({action: 'modal', params: ['close']});
   }
 
   openConfirm(id: number) {

@@ -1,9 +1,10 @@
-import { MaterializeAction } from 'angular2-materialize';
-import { EventEmitter, Output } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { MaterializeAction, toast } from 'angular2-materialize';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { Trainner } from '../../models/Trainner';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProfileService } from '../profile.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { Parameter } from '../../utils/Parameters';
 
 @Component({
   selector: 'app-new-trainner-modal',
@@ -15,7 +16,8 @@ export class NewTrainnerModalComponent implements OnInit {
   form: FormGroup;
   trainner: Trainner;
   modalActions: EventEmitter<string|MaterializeAction>;
-  @Output() afterAdd: EventEmitter<Error|Trainner>;
+  @Output() onUpdated = new EventEmitter<Trainner>();
+  @BlockUI() blockUI: NgBlockUI;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,13 +37,26 @@ export class NewTrainnerModalComponent implements OnInit {
     });
   }
 
-  adicionar() {
-    this.trainner =
+  showModal(show: boolean) {
+    this.modalActions.emit({action: 'modal', params: [show ? 'open' : 'close']});
+  }
+
+  addTrainner() {
     this.trainner = this.form.value;
+    this.blockUI.start();
     this.profileService.addTrainner(this.trainner)
       .subscribe(result => {
-        this.trainner = new Trainner();
-        this.afterAdd = n
+        this.blockUI.stop();
+        this.onUpdated.emit(result);
+      }, error => {
+        let toastMessage = '';
+        if (error.status === 412) {
+          toastMessage = Parameter.dataError;
+        }else if (error.status === 0) {
+          toastMessage = Parameter.connectBackendError;
+        }
+        this.blockUI.stop();
+        toast(toastMessage, Parameter.toastTime, 'red');
       });
   }
 
