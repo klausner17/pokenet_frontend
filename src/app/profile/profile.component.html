@@ -8,20 +8,18 @@
       <span>Você ainda não cadastrou nenhum treinador</span>
     </div>
     <div class="col s12 m12 l8 push-l2">
-      <ul class="collection">
-        <li class="collection-item row" *ngFor="let trainner of profile.trainners">
-          <div class="col s5">
-            <span>{{ trainner.name }}</span>
-          </div>
-          <div class="col s3">
-            <span class="grey-text"> nível {{ trainner.level }}</span>
-          </div>
-          <div class="col s4">
-            <a (click)="deleteTrainner(deleteModal, trainner.id)" class="secondary-content button-collection grey-text"><i class="material-icons">delete</i></a>
-            <!-- <a class="secondary-content button-collection green-text"><i class="material-icons">edit</i></a> -->
-          </div>
-        </li>
-      </ul>
+      <div class="row z-depth-2 trainner-info" *ngFor="let trainner of profile.trainners">
+        <div class="col s6">
+          <span class="truncate">{{ trainner.name }}</span>
+        </div>
+        <div class="col s3">
+          <span class="grey-text"> nível {{ trainner.level }}</span>
+        </div>
+        <div class="col s3">
+          <a (click)="deleteTrainner(deleteModal, trainner.id)" class="secondary-content button-collection grey-text"><i class="material-icons">delete</i></a>
+          <!-- <a class="secondary-content button-collection green-text"><i class="material-icons">edit</i></a> -->
+        </div>
+      </div>
       <div class="fixed-action-btn" style="bottom: 85px; right: 30px">
         <button class="btn-floating red darken-1" (click)="openModal(modalNewTrainner)"><i class="material-icons">add</i></button>
       </div>
