@@ -17,7 +17,7 @@
             <span class="grey-text"> nível {{ trainner.level }}</span>
           </div>
           <div class="col s4">
-            <a (click)="openConfirm(trainner.id)" class="secondary-content button-collection grey-text"><i class="material-icons">delete</i></a>
+            <a (click)="deleteTrainner(deleteModal, trainner.id)" class="secondary-content button-collection grey-text"><i class="material-icons">delete</i></a>
             <!-- <a class="secondary-content button-collection green-text"><i class="material-icons">edit</i></a> -->
           </div>
         </li>
@@ -31,5 +31,9 @@
   <app-new-trainner-modal #modalNewTrainner (onUpdated)='updateListTrainner($event)'>
 
   </app-new-trainner-modal>
+
+  <app-delete-modal #deleteModal (onUpdated)='updateListTrainner($event)'>
+
+  </app-delete-modal>
 
 </div>

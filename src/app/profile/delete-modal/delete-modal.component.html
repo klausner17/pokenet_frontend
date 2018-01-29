@@ -1,0 +1,9 @@
+<div id="modalConfirmRemove" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <span>Tem certeza que deseja excluir?</span>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-red btn-flat" (click)="showModal(false)">cancelar</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat red-text" (click)="removeTrainner()">excluir</a>
+  </div>
+</div>

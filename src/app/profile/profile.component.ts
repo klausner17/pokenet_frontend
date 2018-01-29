@@ -1,12 +1,15 @@
+import { Parameter } from './../utils/Parameters';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { NewTrainnerModalComponent } from './new-trainner-modal/new-trainner-modal.component';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
-import { MaterializeAction } from 'angular2-materialize';
+import { MaterializeAction, toast } from 'angular2-materialize';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Profile } from '../models/Profile';
 import { ProfileService } from './profile.service';
 import { Trainner } from '../models/Trainner';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-profile',
@@ -16,13 +19,11 @@ import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   profile: Profile;
-  trainnerEdit: Trainner;
-  modalActions: EventEmitter<string|MaterializeAction>;
-  modalConfirm: EventEmitter<string|MaterializeAction>;
-  idToDelete: number;
+  @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private profileService: ProfileService, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
-    this.modalConfirm = new EventEmitter<string|MaterializeAction>();
+  constructor(
+    private profileService: ProfileService,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -36,31 +37,20 @@ export class ProfileComponent implements OnInit {
   }
 
   updateListTrainner(trainner: Trainner) {
-    this.profile.trainners.push(trainner);
-  }
-
-  deletar(id: number) {
-    this.idToDelete = id;
-  }
-
-  remove() {
-    this.profileService.deleteTrainner(this.idToDelete)
-      .subscribe((res: Response) => {
-        this.profile.trainners.forEach((element: Trainner, index: number) => {
-          if (element.id === this.idToDelete) {
-            this.idToDelete = -1;
-            this.profile.trainners.splice(index, 1);
-          }
-        });
+    this.blockUI.start();
+    this.profileService.getTrainners()
+      .subscribe(result => {
+        this.profile.trainners = result;
+        this.blockUI.stop();
+      }, error => {
+        this.blockUI.stop();
+        toast('Erro ao excluir.', Parameter.toastTime, 'red');
       });
   }
 
-  openConfirm(id: number) {
-    this.idToDelete = id;
-    this.modalConfirm.emit({action: 'modal', params: ['open']});
-  }
-  closeConfirm() {
-    this.modalConfirm.emit({action: 'modal', params: ['close']});
+  deleteTrainner(modal: DeleteModalComponent, id: number) {
+    modal.idTrainnerRemove = id;
+    modal.showModal(true);
   }
 
 }
