@@ -1,3 +1,4 @@
+import { EditTrainnerComponent } from './edit-trainner/edit-trainner.component';
 import { Parameter } from './../utils/Parameters';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { NewTrainnerModalComponent } from './new-trainner-modal/new-trainner-modal.component';
@@ -50,6 +51,11 @@ export class ProfileComponent implements OnInit {
 
   deleteTrainner(modal: DeleteModalComponent, id: number) {
     modal.idTrainnerRemove = id;
+    modal.showModal(true);
+  }
+
+  editTrainner(modal: EditTrainnerComponent, trainner: Trainner) {
+    modal.trainner = trainner;
     modal.showModal(true);
   }
 

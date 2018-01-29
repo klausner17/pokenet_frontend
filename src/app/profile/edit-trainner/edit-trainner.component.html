@@ -1,0 +1,12 @@
+<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <form [formGroup]="form" novalidate>
+      <input placeholder="nome" class="form-input" formControlName="name">
+      <input placeholder="nível de 1 a 40" formControlName="level">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-red btn-flat" (click)="showModal(false)">fechar</a>
+    <button [disabled]="form.invalid" type="submit" class="modal-action modal-close btn-flat green-text" (click)="addTrainner()">salvar</button>
+  </div>
+</div>

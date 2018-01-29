@@ -9,15 +9,15 @@
     </div>
     <div class="col s12 m12 l8 push-l2">
       <div class="row z-depth-2 trainner-info" *ngFor="let trainner of profile.trainners">
-        <div class="col s6">
+        <div class="col s5">
           <span class="truncate">{{ trainner.name }}</span>
         </div>
         <div class="col s3">
           <span class="grey-text"> nível {{ trainner.level }}</span>
         </div>
-        <div class="col s3">
-          <a (click)="deleteTrainner(deleteModal, trainner.id)" class="secondary-content button-collection grey-text"><i class="material-icons">delete</i></a>
-          <!-- <a class="secondary-content button-collection green-text"><i class="material-icons">edit</i></a> -->
+        <div class="col s4">
+          <a (click)="deleteTrainner(modalDeleteTrainner, trainner.id)" class="secondary-content button-collection grey-text"><i class="material-icons">delete</i></a>
+          <a (click)="editTrainner(modalEditTrainner, trainner)" class="secondary-content button-collection green-text"><i class="material-icons">edit</i></a>
         </div>
       </div>
       <div class="fixed-action-btn" style="bottom: 85px; right: 30px">
@@ -26,12 +26,10 @@
     </div>
   </div>
 
-  <app-new-trainner-modal #modalNewTrainner (onUpdated)='updateListTrainner($event)'>
+  <app-new-trainner-modal #modalNewTrainner (onUpdated)='updateListTrainner($event)'></app-new-trainner-modal>
 
-  </app-new-trainner-modal>
+  <app-delete-modal #modalDeleteTrainner (onUpdated)='updateListTrainner($event)'></app-delete-modal>
 
-  <app-delete-modal #deleteModal (onUpdated)='updateListTrainner($event)'>
-
-  </app-delete-modal>
+  <app-edit-trainner #modalEditTrainner (onUpdate)='updateListTrainner($event)'></app-edit-trainner>
 
 </div>

@@ -1,8 +1,8 @@
+import { Observable } from 'rxjs/Observable';
 import { Trainner } from './../models/Trainner';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import { Profile } from '../models/Profile';
 import { RequestOptions } from '@angular/http';
 
@@ -50,6 +50,15 @@ export class ProfileService {
   deleteTrainner(id: number): Observable<Response> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.delete(`${environment.backend}/trainner/${id}`, options);
+  }
+
+  editTrainner(trainner: Trainner): Observable<Trainner> {
+    const options: RequestOptions = new RequestOptions({headers: this.headers});
+    return this.http.put(`${environment.backend}/trainner/${trainner.id}`, trainner, options)
+      .map((response: Response) =>  response.json())
+      .map(result => {
+        return result;
+      });
   }
 
 }

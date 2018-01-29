@@ -33,6 +33,7 @@ import { MaterializeDirective } from 'angular2-materialize/dist/materialize-dire
 import { SnorlaxLoadingComponent } from './utils/snorlax-loading/snorlax-loading.component';
 import { NewTrainnerModalComponent } from './profile/new-trainner-modal/new-trainner-modal.component';
 import { DeleteModalComponent } from './profile/delete-modal/delete-modal.component';
+import { EditTrainnerComponent } from './profile/edit-trainner/edit-trainner.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DeleteModalComponent } from './profile/delete-modal/delete-modal.compon
     LoginFormComponent,
     SnorlaxLoadingComponent,
     NewTrainnerModalComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    EditTrainnerComponent
   ],
   imports: [
     BrowserModule,
