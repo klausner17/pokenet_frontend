@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { RaidService } from '../raid.service';
 import { Raid } from '../../models/Raid';
 import { PokemonGym } from '../../models/PokemonGym';
-import { Pokemon } from '../../models/Pokemon';
 import { Gym } from '../../models/Gym';
 
 @Component({
@@ -30,7 +29,7 @@ export class NewRaidComponent implements OnInit {
       this.pokemonsGym = info.pokemonsGym;
       this.gyms = info.gyms;
       this.pokemonsGym.sort((a: PokemonGym, b: PokemonGym): number => {
-        return a.pokemon.name.localeCompare(b.pokemon.name);
+        return a.name.localeCompare(b.name);
       });
     });
   }
@@ -39,11 +38,6 @@ export class NewRaidComponent implements OnInit {
     this.raid.meetingTime = this.stringToDate(undefined, this.raid.timeToMeet);
     this.raid.timeToClose = this.stringToDate(undefined, this.raid.timeToMeet);
     this.raid.maxTrainners = 20;
-    for (let i = 0; i < this.pokemonsGym.length; i++) {
-      if (this.pokemonsGym[i].pokemon.id == this.raid.pokemonId) {
-        this.raid.pokemonGymId = this.pokemonsGym[i].id;
-      }
-    }
     this.raidService.createRaid(this.raid)
       .subscribe((result: Raid) => {
         this.router.navigate([`/raid/${result.id}`]);

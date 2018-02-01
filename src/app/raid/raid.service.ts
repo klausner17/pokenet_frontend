@@ -4,7 +4,6 @@ import { environment } from '../../environments/environment';
 import { Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { PokemonGym } from '../models/PokemonGym';
-import { Pokemon } from '../models/Pokemon';
 import { Gym } from '../models/Gym';
 import { Raid } from '../models/Raid';
 import { RaidTrainner } from '../models/RaidTrainner';
@@ -20,78 +19,52 @@ export class RaidService {
     this.headers.append('Authorization', `Bearer ${userToken}`);
    }
 
-  getPokemon(): Observable<Pokemon[]> {
+  getPokemon(): Observable<PokemonGym[]> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
-    return this.http.get(`${environment.backend}/pokemon`, options)
-      .map((response: Response) => response.json())
-      .map((result) => {
-        const pokemons: Pokemon[] = result;
-        return pokemons;
-      });
+    return this.http.get(`${environment.backend}/pokemonGym`, options)
+      .map((response: Response) => response.json());
   }
 
   getPokemonGym(): Observable<PokemonGym[]> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.get(`${environment.backend}/pokemonGym`, options)
-      .map((response: Response) => response.json())
-      .map((result) => {
-        const pokemonsGym = result;
-        return pokemonsGym;
-      });
+      .map((response: Response) => response.json());
   }
 
   getGym(): Observable<Gym[]> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.get(`${environment.backend}/gym`, options)
-      .map((response: Response) => response.json())
-      .map((result) => {
-        const gyms = result;
-        return gyms;
-      });
+      .map((response: Response) => response.json());
   }
 
   createRaid(raid: Raid): Observable<Raid> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.post(`${environment.backend}/listraid`, raid, options)
-      .map((response: Response) => response.json())
-      .map((result) => {
-        const raidCreated = result;
-        return raidCreated;
-      });
+      .map((response: Response) => response.json());
   }
 
   getRaidById(id: number): Observable<Raid> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.get(`${environment.backend}/listRaids/${id}`, options)
-      .map((response: Response) => response.json())
-      .map((result) => {
-        const raid = result;
-        return raid;
-      });
+      .map((response: Response) => response.json());
   }
 
   getRaids(): Observable<Raid[]> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.get(`${environment.backend}/listRaids/`, options)
-      .map((response: Response) => response.json())
+      .map((response: Response) => response.json());
   }
 
   joinToRaid(idRaid: number, idTrainner: number): Observable<RaidTrainner> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.post(`${environment.backend}/listRaid/${idRaid}/trainner/${idTrainner}`, {},  options)
-      .map((response: Response) => response.json())
-      .map((result) => {
-        return result;
-      });
+      .map((response: Response) => response.json());
   }
 
   unjoinToRaid(idRaid: number, idTrainner: number) {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
     return this.http.delete(`${environment.backend}/listRaid/${idRaid}/trainner/${idTrainner}`, options)
-      .map((response: Response) => response.json())
-      .map((result) => {
-        console.log(result);
-      });
+      .map((response: Response) => response.json());
   }
 
 }
