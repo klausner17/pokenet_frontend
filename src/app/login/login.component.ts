@@ -1,7 +1,6 @@
-import { User } from './../models/User';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { toast } from 'angular2-materialize';
 
@@ -14,8 +13,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
     private router: Router,
-    private authService: AuthService,
-    private activedRouter: ActivatedRoute) {  }
+    private authService: AuthService) {  }
 
   ngOnInit() {
     if (this.authService.isAuthenticate()) {

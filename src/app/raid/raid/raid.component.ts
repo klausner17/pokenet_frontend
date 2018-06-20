@@ -1,13 +1,12 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProfileService } from './../../profile/profile.service';
-import { PokemonGym } from './../../models/PokemonGym';
 import { Raid } from './../../models/Raid';
 import { RaidService } from '../raid.service';
 import { Trainner } from '../../models/Trainner';
-import { MaterializeAction } from 'angular2-materialize';
+import { MaterializeAction, toast } from 'angular2-materialize';
 import { RaidTrainner } from '../../models/RaidTrainner';
+import { NgBlockUI, BlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-raid',
@@ -15,14 +14,14 @@ import { RaidTrainner } from '../../models/RaidTrainner';
   styleUrls: ['./raid.component.css']
 })
 export class RaidComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
   raid: Raid;
   modalActions: EventEmitter<string | MaterializeAction>;
   myTrainners: Trainner[];
 
   constructor(
     private activedRoute: ActivatedRoute,
-    private raidService: RaidService,
-    private profileService: ProfileService
+    private raidService: RaidService
   ) {
     this.modalActions = new EventEmitter<string | MaterializeAction>();
   }
@@ -36,21 +35,36 @@ export class RaidComponent implements OnInit {
 
   alreadyJoin(trainner: Trainner): boolean {
     for (let i = 0; i < this.raid.raidTrainners.length; i++) {
-      return trainner.id === this.raid.raidTrainners[i].trainner.id;
+      return trainner.id === this.raid.raidTrainners[i].trainnerId;
     }
   }
 
   join(trainner: Trainner) {
+    this.blockUI.start();
     this.raidService.joinToRaid(this.raid.id, trainner.id)
       .subscribe((result: RaidTrainner) => {
-        this.raid.raidTrainners.push(result);
+        this.raidService.getRaidById(this.raid.id)
+          .subscribe((raidReload: Raid) => {
+            this.raid = raidReload;
+            this.blockUI.stop();
+          }, () => {
+            let toastMessage = 'Erro ao carregar reide.';
+            toastMessage = toastMessage;
+            this.blockUI.stop();
+            toast(toastMessage, 3000, 'red');
+          });
+      }, () => {
+        let toastMessage = 'Erro ao inserir treinador.';
+        toastMessage = toastMessage;
+        this.blockUI.stop();
+        toast(toastMessage, 3000, 'red');
       });
     this.modalActions.emit({ action: 'modal', params: ['close'] });
   }
 
-  allowUnjoin(trainner: Trainner): boolean {
+  allowUnjoin(id: number): boolean {
     for (let i = 0; i < this.myTrainners.length; i++) {
-      if (trainner.id === this.myTrainners[i].id) {
+      if (id === this.myTrainners[i].id) {
         return true;
       }
     }
@@ -58,14 +72,24 @@ export class RaidComponent implements OnInit {
   }
 
   unjoin(trainner: Trainner) {
+    let newList: Array<RaidTrainner> = [];
+    this.blockUI.start();
     this.raidService
       .unjoinToRaid(this.raid.id, trainner.id)
-      .subscribe(result => {
-        this.raid.raidTrainners.forEach( (element: RaidTrainner, index: number) => {
-            if (element.trainner.id === trainner.id) {
-              this.raid.raidTrainners.splice(index, 1);
-            }
-          });
+      .subscribe(() => {
+        for (let i = 0; i < this.raid.raidTrainners.length; i++) {
+          const raidTrainner = this.raid.raidTrainners[i];
+          if (raidTrainner.trainnerId !== trainner.id) {
+            newList.push(raidTrainner);
+          }
+        }
+        this.raid.raidTrainners = newList;
+        this.blockUI.stop();
+      }, () => {
+        let toastMessage = 'Erro ao remover treinador.';
+        toastMessage = toastMessage;
+        this.blockUI.stop();
+        toast(toastMessage, 3000, 'red');
       });
   }
 

@@ -1,45 +1,44 @@
 <div class="container">
-  <h4 class="align center">{{ raid.gym.name }}</h4>
-  <div class="row">
-    <div class="col s12 m10 offset-m1">
-      <div class="row">
-        <div class="col s12 m4 align center">
-          <span class="bold">Pokemon: </span>
-          <span>{{ raid.pokemonGym.name | titlecase }}</span>
-          <span class="orange-text">CP {{ raid.pokemonGym.combatPower }}</span>
-        </div>
-        <div class="col s12 m4 align center">
-          <span class="bold">Horário: </span>
-          <span>{{ raid.meetingTime | date: 'dd/MM/yyyy HH:mm' }}</span>
-        </div>
-        <div class="col s12 m4 align center">
-          <span class="bold">Criador:</span>
-          <span>{{ raid.user.name }}</span>
-        </div>
+  <div class="header">
+    <h4 class="align center">{{ raid.gym.name }}</h4>
+    <div class="col s12 m8 offset-m2">
+      <div class="col s12 m6 align center">
+        <span class="bold">Horário: </span>
+        <span>{{ raid.meetingTime | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>
+      <div class="col s12 m6 align center">
+        <span class="bold">Criador:</span>
+        <span>{{ raid.user.name }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="trainners">
+    <div class="row">
       <div class="align center" *ngIf="raid.raidTrainners.length == 0">
         <span>Ainda não há treinadores</span>
       </div>
       <ul class="collection">
         <li class="collection-item" *ngFor="let raidTrainner of raid.raidTrainners">
-          <div class="row">
+          <div class="row" style="margin: 0">
             <div class="col s5 m4">
               <span>{{ raidTrainner.trainner.name }}</span>
             </div>
             <div class="col s4 m4 align center">
               <span class="grey-text">nível {{ raidTrainner.trainner.level }}</span>
             </div>
-            <div *ngIf="allowUnjoin(raidTrainner.trainner)" (click)="unjoin(raidTrainner.trainner)" class="col s3 m4 align center">
-              <span class="red-text cursor-hand">sair</span>
+            <div *ngIf="allowUnjoin(raidTrainner.trainnerId)" (click)="unjoin(raidTrainner.trainner)" class="col s3 m4">
+              <span class="align right red-text cursor-hand">sair</span>
             </div>
           </div>
         </li>
       </ul>
-      <button class="btn align right" (click)="openModal()">Juntar-se</button>
+      <button class="btn align right grey darken-4" (click)="openModal()">Juntar-se</button>
     </div>
   </div>
 </div>
 
+
+<!-- modal -->
 <div id="modalTrainners" class="modal small" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
   <div class="modal-content">
     <div *ngIf="myTrainners != undefined || myTrainners.length > 0">

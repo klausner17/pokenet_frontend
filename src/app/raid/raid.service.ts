@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { PokemonGym } from '../models/PokemonGym';
 import { Gym } from '../models/Gym';
 import { Raid } from '../models/Raid';
 import { RaidTrainner } from '../models/RaidTrainner';
+import { Pokemon } from '../models/Pokemon';
 
 @Injectable()
 export class RaidService {
@@ -19,15 +19,15 @@ export class RaidService {
     this.headers.append('Authorization', `Bearer ${userToken}`);
    }
 
-  getPokemon(): Observable<PokemonGym[]> {
+  getPokemon(): Observable<Pokemon[]> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
-    return this.http.get(`${environment.backend}/pokemonGym`, options)
+    return this.http.get(`${environment.backend}/pokemon`, options)
       .map((response: Response) => response.json());
   }
 
-  getPokemonGym(): Observable<PokemonGym[]> {
+  getPokemonGym(): Observable<Pokemon[]> {
     const options: RequestOptions = new RequestOptions({headers: this.headers});
-    return this.http.get(`${environment.backend}/pokemonGym`, options)
+    return this.http.get(`${environment.backend}/pokemon`, options)
       .map((response: Response) => response.json());
   }
 

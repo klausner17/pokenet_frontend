@@ -1,7 +1,7 @@
 import { Profile } from './Profile';
 import { RaidTrainner } from './RaidTrainner';
-import { PokemonGym } from './PokemonGym';
 import { Gym } from './Gym';
+import { Pokemon } from './Pokemon';
 
 export class Raid {
   id: number;
@@ -13,7 +13,7 @@ export class Raid {
   timeToClose: Date;
   timeClose: string;
   maxTrainners: number;
-  pokemonGym: PokemonGym;
+  pokemon: Pokemon;
   gym: Gym;
   raidTrainners: RaidTrainner[];
   user: Profile;

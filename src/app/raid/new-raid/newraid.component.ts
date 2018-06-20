@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { RaidService } from '../raid.service';
 import { Raid } from '../../models/Raid';
-import { PokemonGym } from '../../models/PokemonGym';
 import { Gym } from '../../models/Gym';
+import { Pokemon } from '../../models/Pokemon';
 
 @Component({
   selector: 'app-new-raid',
@@ -14,7 +14,7 @@ import { Gym } from '../../models/Gym';
 export class NewRaidComponent implements OnInit {
 
   raid: Raid;
-  pokemonsGym: PokemonGym[];
+  pokemonsGym: Pokemon[];
   gyms: Gym[];
   datePickerParams: [{}];
   timePickerParams: [{}];
@@ -28,7 +28,8 @@ export class NewRaidComponent implements OnInit {
     this.activedRouter.data.subscribe(info => {
       this.pokemonsGym = info.pokemonsGym;
       this.gyms = info.gyms;
-      this.pokemonsGym.sort((a: PokemonGym, b: PokemonGym): number => {
+      console.log(info);
+      this.pokemonsGym.sort((a: Pokemon, b: Pokemon): number => {
         return a.name.localeCompare(b.name);
       });
     });
