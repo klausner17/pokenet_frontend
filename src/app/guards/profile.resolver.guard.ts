@@ -17,6 +17,7 @@ export class ProfileResolverGuard implements Resolve<Profile> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Profile | Promise<Profile> | Observable<Profile> {
+    console.log('ye')
     return this.profileService.getProfile();
   }
 }
